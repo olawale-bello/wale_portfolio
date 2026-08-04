@@ -20,15 +20,14 @@
   img,video{max-width:100%;display:block;}
   .container{max-width:1200px;margin:0 auto;padding:0 20px;}
 
-  nav{position:fixed;top:0;left:0;width:100%;z-index:100;background:#000;}
-  nav .inner{max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
-  nav .left{display:flex;align-items:center;gap:30px;}
+  nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;z-index:100;background:#000;padding:10px 20px;display:flex;align-items:center;gap:16px;}
+  nav .brand{display:flex;align-items:center;gap:30px;margin-right:auto;}
   nav .logo{font-family:"Mona Sans",sans-serif;font-weight:700;font-size:17px;}
   nav .tagline{font-size:17px;font-weight:500;}
-  nav .links{font-size:17px;font-weight:500;color:#fff;}
+  nav .links{font-size:17px;font-weight:500;color:#fff;margin-right:120px;}
   nav .links a{color:#fff;}
   nav .links a:hover,nav .talk:hover{color:rgba(255,255,255,0.6);}
-  nav .talk{font-size:17px;font-weight:500;margin-left:40px;}
+  nav .talk{font-size:17px;font-weight:500;}
 
   .hero{position:relative;height:100vh;min-height:480px;width:100%;overflow:hidden;display:flex;align-items:flex-end;background:#000;}
   .hero video,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -50,8 +49,9 @@
   .gallery h2{font-family:"Mona Sans",sans-serif;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:24px;}
   .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   .clip{position:relative;overflow:hidden;background:#111;aspect-ratio:16/10;}
-  .clip video{width:100%;height:100%;object-fit:cover;cursor:pointer;}
-  .clip .label{position:absolute;left:14px;bottom:12px;font-size:13px;font-weight:500;background:rgba(0,0,0,0.55);padding:6px 10px;border-radius:4px;pointer-events:none;}
+  .clip video{width:100%;height:100%;object-fit:cover;cursor:pointer;display:block;}
+  .clip::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,0.8) 100%);pointer-events:none;}
+  .clip .label{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;font-family:"Mona Sans",sans-serif;font-size:clamp(16px,2vw,22px);font-weight:500;color:#fff;pointer-events:none;}
 
   .next-project{display:flex;align-items:center;justify-content:space-between;padding:56px 0 80px;border-top:1px solid rgba(255,255,255,0.15);}
   .next-project a{font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;}
@@ -59,7 +59,6 @@
 
   @media (max-width:1024px){
     nav .tagline,nav .links{display:none;}
-    nav .talk{margin-left:0;}
     .back-link{margin:96px 20px 0;}
     .meta-row{grid-template-columns:1fr;padding:48px 0;gap:16px;}
     .rationale{padding:48px 0;}
@@ -72,18 +71,14 @@
 <body>
 
 <nav>
-  <div class="inner">
-    <div class="left">
-      <a class="logo" href="../../index.html">Olawale Bello&reg;</a>
-      <span class="tagline">Art Direction, Visual Design</span>
-    </div>
-    <div class="left">
-      <span class="links">
-        <a href="../../work/index.html">Work</a>, <a href="../../archive/index.html">Archive</a>, <a href="../../profile/index.html">Profile</a>, <a href="../../journal/index.html">Journal</a>
-      </span>
-      <a class="talk" href="../../contact/index.html">Let's Talk</a>
-    </div>
+  <div class="brand">
+    <a class="logo" href="../../index.html">Olawale Bello&reg;</a>
+    <span class="tagline">Art Direction, Visual Design</span>
   </div>
+  <span class="links">
+    <a href="../../work/index.html">Work</a>, <a href="../../archive/index.html">Archive</a>, <a href="../../profile/index.html">Profile</a>, <a href="../../journal/index.html">Journal</a>
+  </span>
+  <a class="talk" href="../../contact/index.html">Let's Talk</a>
 </nav>
 
 <a class="back-link" href="../../work/index.html">&larr; Back</a>
@@ -125,31 +120,31 @@
     <h2>Runway Films</h2>
     <div class="gallery-grid">
       <div class="clip">
-        <video controls muted playsinline preload="metadata">
+        <video controls muted playsinline preload="metadata" poster="Xu_Zhi_Runway_poster.jpg">
           <source src="Xu_Zhi_Runway.mp4" type="video/mp4">
         </video>
         <span class="label">Xu Zhi &mdash; Runway</span>
       </div>
       <div class="clip">
-        <video controls muted playsinline preload="metadata">
+        <video controls muted playsinline preload="metadata" poster="Tolu_C_Runway_poster.jpg">
           <source src="Tolu_C_Runway.mp4" type="video/mp4">
         </video>
         <span class="label">Tolu C &mdash; Runway</span>
       </div>
       <div class="clip">
-        <video controls muted playsinline preload="metadata">
+        <video controls muted playsinline preload="metadata" poster="Sample_1_poster.jpg">
           <source src="Sample_1.mp4" type="video/mp4">
         </video>
         <span class="label">Highlight Reel &mdash; Cut 1</span>
       </div>
       <div class="clip">
-        <video controls muted playsinline preload="metadata">
+        <video controls muted playsinline preload="metadata" poster="Sample_1_Sndtrk_2_poster.jpg">
           <source src="Sample_1_Sndtrk_2.mp4" type="video/mp4">
         </video>
         <span class="label">Highlight Reel &mdash; Cut 1 (Alt Soundtrack)</span>
       </div>
       <div class="clip">
-        <video controls muted playsinline preload="metadata">
+        <video controls muted playsinline preload="metadata" poster="Sample_2_poster.jpg">
           <source src="Sample_2.mp4" type="video/mp4">
         </video>
         <span class="label">Highlight Reel &mdash; Cut 2</span>
