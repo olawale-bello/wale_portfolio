@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>try{if(localStorage.getItem("wale-theme")==="light")document.documentElement.classList.add("light-mode")}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vernholt Atelier - Olawale Bello</title>
+<meta name="description" content="Art direction, web design, motion and sound for Vernholt Atelier, a concept for an independent watchmaker. Full site, showcase film and a section-by-section breakdown.">
+<link href="https://framerusercontent.com/images/KG1d2FgPHUTzOr0dD5pQbFs77Cc.jpg" rel="icon">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vernholt Atelier - Olawale Bello">
+<meta property="og:description" content="Art direction, web design, motion and sound for Vernholt Atelier, a concept for an independent watchmaker.">
+<meta property="og:image" content="media/vernholt-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mona+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#000;color:#fff;font-family:"Inter","Mona Sans",sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img,video,iframe{max-width:100%;display:block;}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px;}
+
+  nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;z-index:100;background:#000;padding:10px 20px;display:flex;align-items:center;gap:16px;}
+  nav .brand{display:flex;align-items:center;gap:30px;margin-right:auto;}
+  nav .logo{font-family:"Mona Sans",sans-serif;font-weight:700;font-size:17px;}
+  nav .tagline{font-size:17px;font-weight:500;}
+  nav .links{font-size:17px;font-weight:500;color:#fff;margin-right:120px;}
+  nav .links a{color:#fff;}
+  nav .links a:hover,nav .talk:hover{color:rgba(255,255,255,0.6);}
+  nav .talk{font-size:17px;font-weight:500;}
+
+  .hero{position:relative;height:100vh;min-height:480px;width:100%;overflow:hidden;display:flex;align-items:flex-end;background:#000;}
+  .hero video,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.75) 100%);}
+  .hero-inner{position:relative;z-index:2;width:100%;padding:0 20px 40px;}
+  .back-link{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;margin:130px 20px 0;font-size:17px;font-weight:500;color:#fff;}
+  .hero-inner h1{font-family:"Mona Sans",sans-serif;font-weight:500;font-size:clamp(36px,6vw,72px);line-height:1.02;max-width:900px;}
+
+  .meta-row{display:grid;grid-template-columns:repeat(3,minmax(160px,1fr));gap:24px;padding:80px 0;border-bottom:1px solid rgba(255,255,255,0.15);}
+  .meta-row div h3{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:10px;}
+  .meta-row div p{font-size:17px;font-weight:500;}
+
+  .eyebrow{font-family:"Mona Sans",sans-serif;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:24px;}
+  .rationale{padding:80px 0;max-width:820px;}
+  .rationale p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.85);margin-bottom:20px;}
+  .rationale p:last-child{margin-bottom:0;}
+
+  .block{padding:0 0 96px;}
+  .block-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:24px;}
+  .block-head .eyebrow{margin-bottom:0;}
+  .block-head a{font-size:15px;font-weight:500;color:rgba(255,255,255,0.6);}
+  .block-head a:hover{color:#fff;}
+  .block-note{font-size:15px;color:rgba(255,255,255,0.6);}
+  .note{font-size:15px;line-height:1.6;color:rgba(255,255,255,0.6);margin-top:14px;max-width:640px;}
+
+  .clip{position:relative;overflow:hidden;background:#111;}
+  .clip video{width:100%;height:100%;object-fit:cover;display:block;}
+  .film{aspect-ratio:4/3;max-height:88vh;margin-inline:auto;}
+
+  /* live site in a browser frame */
+  .browser{border:1px solid rgba(255,255,255,0.15);background:#0d0d0d;}
+  .browser-bar{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.12);}
+  .dots{display:flex;gap:6px;}
+  .dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.22);display:block;}
+  .url{flex:1;min-width:0;font-size:13px;color:rgba(255,255,255,0.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .browser-bar a{font-size:13px;font-weight:500;white-space:nowrap;}
+  .browser iframe{width:100%;height:min(82vh,860px);border:0;background:#0a0a0b;}
+
+  /* section breakdown */
+  .sections{display:flex;flex-direction:column;gap:72px;}
+  .sec{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;align-items:start;padding-top:28px;border-top:1px solid rgba(255,255,255,0.15);}
+  .sec-text{position:sticky;top:96px;}
+  .sec-num{font-family:"Mona Sans",sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,0.45);margin-bottom:10px;font-variant-numeric:tabular-nums;}
+  .sec h3{font-family:"Mona Sans",sans-serif;font-size:clamp(22px,2.4vw,30px);font-weight:500;line-height:1.15;margin-bottom:14px;}
+  .sec p{font-size:16px;line-height:1.6;color:rgba(255,255,255,0.8);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;list-style:none;}
+  .tags li{font-size:12px;font-weight:500;letter-spacing:0.02em;padding:6px 10px;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.8);}
+  .sec .clip{aspect-ratio:16/10;}
+
+  /* mobile */
+  .mobile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;}
+  .phone{width:min(340px,100%);margin-inline:auto;border:10px solid #1a1a1a;border-radius:44px;overflow:hidden;background:#111;aspect-ratio:390/844;}
+  .phone video{width:100%;height:100%;object-fit:cover;}
+  .mobile p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.85);max-width:460px;}
+
+  /* imagery */
+  .imagery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+  .imagery figure{position:relative;overflow:hidden;background:#111;aspect-ratio:4/5;}
+  .imagery figure.wide{grid-column:span 2;aspect-ratio:auto;}
+  .imagery img{width:100%;height:100%;object-fit:cover;}
+
+  /* credits */
+  .credits{display:grid;grid-template-columns:repeat(3,minmax(160px,1fr));gap:28px 24px;}
+  .credits h4{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:8px;}
+  .credits p{font-size:16px;font-weight:500;line-height:1.45;}
+  .credits a{text-decoration:underline;text-underline-offset:3px;}
+
+  .next-project{display:flex;align-items:center;justify-content:space-between;padding:56px 0 80px;border-top:1px solid rgba(255,255,255,0.15);}
+  .next-project a{font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;}
+  .next-project .all{color:rgba(255,255,255,0.6);font-family:"Inter",sans-serif;font-size:17px;font-weight:500;}
+
+  /* theme-toggle inverts the page; keep the embedded site true */
+  html.light-mode iframe{filter:invert(1) hue-rotate(180deg);}
+
+  @media (max-width:1024px){
+    nav .tagline,nav .links{display:none;}
+    .back-link{margin:96px 20px 0;}
+    .meta-row{grid-template-columns:1fr;padding:48px 0;gap:16px;}
+    .rationale{padding:48px 0;}
+    .block{padding:0 0 64px;}
+    .sec{grid-template-columns:1fr;gap:20px;}
+    .sec-text{position:static;}
+    .mobile{grid-template-columns:1fr;}
+    .imagery{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .credits{grid-template-columns:1fr 1fr;}
+    .browser iframe{height:72vh;}
+    .next-project{flex-direction:column;align-items:flex-start;gap:12px;padding:40px 0 56px;}
+  }
+  @media (max-width:560px){.credits{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <a class="logo" href="../../">Olawale Bello&reg;</a>
+    <span class="tagline">Art Direction, Visual Design</span>
+  </div>
+  <span class="links">
+    <a href="../../work/">Work</a>, <a href="../../archive/">Archive</a>, <a href="../../profile/">Profile</a>, <a href="../../journal/">Journal</a>
+  </span>
+  <a class="talk" href="../../contact/">Let's Talk</a>
+</nav>
+
+<a class="back-link" href="../../work/">&larr; Back</a>
+
+<section class="hero" id="hero-video-section">
+  <video autoplay muted loop playsinline preload="auto" poster="media/vernholt-hero-loop_poster.jpg" aria-hidden="true">
+    <source src="media/vernholt-hero-loop.mp4" type="video/mp4">
+  </video>
+  <div class="hero-inner">
+    <div class="container">
+      <h1>Vernholt Atelier</h1>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="meta-row">
+    <div>
+      <h3>Client</h3>
+      <p>Vernholt Atelier (concept)</p>
+    </div>
+    <div>
+      <h3>Year</h3>
+      <p>2026</p>
+    </div>
+    <div>
+      <h3>Services</h3>
+      <p>Art Direction, Web Design, Motion Design, Sound Design</p>
+    </div>
+  </section>
+
+  <section class="rationale">
+    <h2 class="eyebrow">Rationale</h2>
+    <p>Vernholt is a concept for an independent watchmaker in the Vallée de Joux. It makes thirty-six watches a year, and each one is built for a single wrist. The site had to feel like turning the pages of a printed catalogue, with the motion doing the work of showing the craft.</p>
+    <p>The direction started from a reference for a bespoke tailoring house. Watchmaking tells the same story: made to order, sold by appointment, and best shown through hands and materials. So the visual system carried over, and the rest was rebuilt for the new subject. That meant new copy, new imagery, a calibre spec sheet, and a small clock glyph that keeps time as you scroll.</p>
+    <p>Everything is black and white. Off-white pages float over a fixed, darkened close-up of a wrist, each moving at its own speed. Headlines in a tight grotesk ink from grey to black as you read them. Two pinned scenes break the rhythm: a framed steel close-up that grows to fill the screen, and a portrait that wipes into a full-length figure.</p>
+    <p>Alongside the site I cut a 33-second showcase film from the same pages, timed as one continuous scroll. It has an original sound design: watch ticks under the reading moments, a whoosh on every page move, and minute-repeater chimes to close.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="eyebrow">Showcase Film</h2>
+      <span class="block-note">33 seconds, sound on</span>
+    </div>
+    <div class="clip film">
+      <video controls playsinline preload="metadata" poster="media/vernholt-film_poster.jpg">
+        <source src="media/vernholt-film.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="eyebrow">Full Website</h2>
+      <a href="site/" target="_blank" rel="noopener">Open full site &nearr;</a>
+    </div>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="url">Vernholt Atelier, concept site</span>
+        <a href="site/" target="_blank" rel="noopener">Open &nearr;</a>
+      </div>
+      <iframe src="site/" title="Vernholt Atelier website, live" loading="lazy"></iframe>
+    </div>
+    <p class="note">This is the live build. Scroll inside the frame, or open it full screen for the smooth-scroll version.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">Section by Section</h2>
+    <div class="sections">
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">01</p>
+          <h3>Vernholt Atelier, The Measured Hour.</h3>
+          <p>The opening page. On load, the wordmark in the nav spreads out, the first sheet rises into place, and the headline inks from grey to black line by line. Two small insets of a dial and a hand-stitched strap introduce the materials.</p>
+          <ul class="tags"><li>Load sequence</li><li>Ink-in type</li><li>Parallax</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s01-hero_poster.jpg"><source src="media/s01-hero.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">02</p>
+          <h3>Commission No. 0217</h3>
+          <p>A framed portrait of a finished commission on the wrist. It scrolls faster than the pages around it, so the sheets separate in depth. The photo also drifts inside its frame.</p>
+          <ul class="tags"><li>Parallax layers</li><li>Image drift</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s02-commission-card_poster.jpg"><source src="media/s02-commission-card.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">03</p>
+          <h3>Frame Zoom</h3>
+          <p>The section pins in place. A steel close-up starts as a framed print and grows to fill the screen. The booking card stays fixed in the centre the whole time. Then the car shot wipes up behind it.</p>
+          <ul class="tags"><li>Pinned scroll</li><li>Scale</li><li>Clip-path wipe</li><li>Sticky CTA</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s03-frame-zoom_poster.jpg"><source src="media/s03-frame-zoom.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">04</p>
+          <h3>Hand-Finished Movements</h3>
+          <p>A collage of a movement held in an open palm and the watchmaker's bench. Each piece arrives at its own speed, and the hand breaks past the edge of the page.</p>
+          <ul class="tags"><li>Staggered collage</li><li>Ink-in type</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s04-movements_poster.jpg"><source src="media/s04-movements.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">05</p>
+          <h3>Dedicated to Your Measured Life.</h3>
+          <p>The fitting process, told over an assembly shot. The three-line headline inks as it reaches reading height, and the photo drifts slowly inside its crop.</p>
+          <ul class="tags"><li>Ink-in type</li><li>Image drift</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s05-dedicated_poster.jpg"><source src="media/s05-dedicated.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">06</p>
+          <h3>Your Own Hour.</h3>
+          <p>The engraving page. A small clock glyph sits inside the headline, and its hands turn as you scroll. It's the one decorative detail on the site, and it belongs to the subject.</p>
+          <ul class="tags"><li>Scroll-linked glyph</li><li>Ink-in type</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s06-your-own-hour_poster.jpg"><source src="media/s06-your-own-hour.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">07</p>
+          <h3>Our Hours</h3>
+          <p>A second pinned scene. The rule between "Our" and "Hours" stretches while the close portrait wipes up into the full-length figure. The atelier's opening hours sit over the image.</p>
+          <ul class="tags"><li>Pinned scroll</li><li>Clip-path wipe</li><li>Line draw</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s07-our-hours_poster.jpg"><source src="media/s07-our-hours.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">08</p>
+          <h3>Calibre VH-01</h3>
+          <p>A technical sheet in real horology terms: frequency in vibrations per hour, power reserve, rate tolerance and finishing. It gives the brand a working detail that only a watchmaker would have.</p>
+          <ul class="tags"><li>Parallax</li><li>Spec layout</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s08-calibre_poster.jpg"><source src="media/s08-calibre.mp4" type="video/mp4"></video></div>
+      </article>
+
+      <article class="sec">
+        <div class="sec-text">
+          <p class="sec-num">09</p>
+          <h3>Reserve a Consultation.</h3>
+          <p>The closing page: the atelier by the lake, the salon cities, and a booking form that asks for wrist size. The form is part of the concept, so it tells visitors that nothing was sent.</p>
+          <ul class="tags"><li>Parallax</li><li>Form</li></ul>
+        </div>
+        <div class="clip"><video class="loop" muted loop playsinline preload="none" poster="media/s09-reserve_poster.jpg"><source src="media/s09-reserve.mp4" type="video/mp4"></video></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">On Mobile</h2>
+    <div class="mobile">
+      <div class="phone"><video class="loop" muted loop playsinline preload="none" poster="media/m-full_poster.jpg"><source src="media/m-full.mp4" type="video/mp4"></video></div>
+      <p>Every section holds at phone width. The pages run close to the edges, the type scales with each page, and both pinned scenes keep their timing. This is one continuous scroll from the first page to the booking form.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">Imagery</h2>
+    <div class="imagery">
+      <figure class="wide"><img loading="lazy" src="site/img/workshop.jpg" alt="The atelier: a long wooden bench by a window over the lake"></figure>
+      <figure><img loading="lazy" src="site/img/wrist.jpg" alt="Steel wristwatch on a man's wrist, resting on grey flannel"></figure>
+      <figure><img loading="lazy" src="site/img/standing.jpg" alt="Man in a dark sweater standing between two black chairs"></figure>
+      <figure><img loading="lazy" src="site/img/hand.jpg" alt="Open palm holding a small mechanical movement"></figure>
+      <figure><img loading="lazy" src="site/img/bench.jpg" alt="Loupe, tweezers, screwdrivers and an open case on a bench"></figure>
+      <figure><img loading="lazy" src="site/img/neck.jpg" alt="Back of a man's neck above a dark knit collar"></figure>
+      <figure><img loading="lazy" src="site/img/car.jpg" alt="Man in a knit sweater at the wheel of a vintage open-top car"></figure>
+      <figure class="wide"><img loading="lazy" src="site/img/assembly.jpg" alt="Watchmaker assembling a movement under a loupe"></figure>
+      <figure><img loading="lazy" src="site/img/steel.jpg" alt="Brushed steel case flank with a polished bevel"></figure>
+      <figure><img loading="lazy" src="site/img/dial.jpg" alt="Grained steel dial with baton markers"></figure>
+      <figure class="wide"><img loading="lazy" src="site/img/engraving.jpg" alt="Engraving a scroll pattern into a steel caseback"></figure>
+      <figure><img loading="lazy" src="site/img/strap.jpg" alt="Hand-stitched leather strap"></figure>
+      <figure><img loading="lazy" src="site/img/bg-sleeve.jpg" alt="Dark wool sleeve with a watch at the cuff, out of focus"></figure>
+    </div>
+    <p class="note">All imagery was generated for this concept from a 15-shot prompt list, then converted to black and white with one shared contrast curve so it reads as a single shoot.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">Credits</h2>
+    <div class="credits">
+      <div><h4>Direction, Design, Motion</h4><p>Olawale Bello</p></div>
+      <div><h4>Sound</h4><p>Original, synthesised for the film</p></div>
+      <div><h4>Imagery</h4><p>AI-generated (ChatGPT)</p></div>
+      <div><h4>Type</h4><p>Archivo, IBM Plex Mono</p></div>
+      <div><h4>Build</h4><p>HTML, CSS, GSAP ScrollTrigger, Lenis</p></div>
+      <div><h4>Film</h4><p>Remotion</p></div>
+      <div><h4>Reference</h4><p><a href="https://dribbble.com/shots/21194333-ATLAS" target="_blank" rel="noopener">ATLAS by Synchronized</a></p></div>
+    </div>
+  </section>
+
+  <section class="next-project">
+    <a href="../gtbank-fashion-weekend/">Next Up: GTBank Fashion Weekend &rarr;</a>
+    <a class="all" href="../../work/">All Projects &rarr;</a>
+  </section>
+</div>
+
+<script>
+// Play section clips only while they are on screen
+(function(){
+  var vids=document.querySelectorAll('video.loop');
+  if(!('IntersectionObserver' in window)){vids.forEach(function(v){v.preload='metadata';v.autoplay=true;});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ if(v.preload==='none'){v.preload='auto';} var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      else { v.pause(); }
+    });
+  },{threshold:0.35});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+<script src="../../theme-toggle.js"></script>
+<script src="../../interactions.js"></script>
+</body>
+</html>
