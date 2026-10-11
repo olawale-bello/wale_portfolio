@@ -22,14 +22,16 @@
   img,video,iframe{max-width:100%;display:block;}
   .container{max-width:1200px;margin:0 auto;padding:0 20px;}
 
-  nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;z-index:100;background:#000;padding:10px 20px;display:flex;align-items:center;gap:16px;}
-  nav .brand{display:flex;align-items:center;gap:30px;margin-right:auto;}
-  nav .logo{font-family:"Mona Sans",sans-serif;font-weight:700;font-size:17px;}
-  nav .tagline{font-size:17px;font-weight:500;}
-  nav .links{font-size:17px;font-weight:500;color:#fff;margin-right:120px;}
-  nav .links a{color:#fff;}
-  nav .links a:hover,nav .talk:hover{color:rgba(255,255,255,0.6);}
-  nav .talk{font-size:17px;font-weight:500;}
+  /* nav: same as the Framer pages (fixed, transparent, Mona Sans 17/500, columns at 24% and 48%) */
+  nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1920px;z-index:100;padding:10px 20px;
+    display:grid;grid-template-columns:24% 24% 1fr auto auto;align-items:start;
+    font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;line-height:1.3;color:#fff;
+    font-feature-settings:"ss01","tnum";}
+  nav a{color:#fff;}
+  nav .talk{margin-right:20px;}
+  nav .links a:hover,nav .talk:hover,nav .logo:hover{color:rgba(255,255,255,0.6);}
+  nav .tagline{display:block;}
+  nav .theme-toggle-btn{margin-top:0;}
 
   .hero{position:relative;height:100vh;min-height:480px;width:100%;overflow:hidden;display:flex;align-items:flex-end;background:#000;}
   .hero video,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -84,20 +86,23 @@
   .imagery figure.wide{grid-column:span 2;aspect-ratio:auto;}
   .imagery img{width:100%;height:100%;object-fit:cover;}
 
-  /* credits */
-  .credits{display:grid;grid-template-columns:repeat(3,minmax(160px,1fr));gap:28px 24px;}
-  .credits h4{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:8px;}
-  .credits p{font-size:16px;font-weight:500;line-height:1.45;}
-
-  .next-project{display:flex;align-items:center;justify-content:space-between;padding:56px 0 80px;border-top:1px solid rgba(255,255,255,0.15);}
-  .next-project a{font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;}
-  .next-project .all{color:rgba(255,255,255,0.6);font-family:"Inter",sans-serif;font-size:17px;font-weight:500;}
+  /* next project: same structure as the Framer pages */
+  .next{position:relative;height:100vh;display:flex;flex-direction:column;overflow:hidden;margin-top:177px;}
+  .next-space{flex:none;height:40vh;}
+  .next-cap{flex:none;display:grid;grid-template-columns:repeat(4,minmax(50px,1fr));gap:20px;align-items:end;width:100%;max-width:1920px;margin:0 auto;padding:0 20px 20px;}
+  .next-label,.next-all{font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;line-height:1.3;}
+  .next-title{grid-column:span 2;font-family:"Inter",sans-serif;font-weight:400;font-size:81px;line-height:1;letter-spacing:-0.04em;white-space:nowrap;font-feature-settings:"tnum","ss01";}
+  .next-title a:hover{color:rgba(255,255,255,0.6);}
+  .next-all{justify-self:end;display:inline-flex;gap:6px;}
+  .next-all span{color:rgba(255,255,255,0.6);}
+  .next-media{position:relative;flex:1 0 0;min-height:0;display:block;overflow:hidden;clip-path:inset(0);}
+  .next-img{position:fixed;top:0;left:0;width:100%;height:100vh;}
+  .next-img img{width:100%;height:100%;object-fit:cover;}
 
   /* theme-toggle inverts the page; keep the embedded site true */
   html.light-mode iframe{filter:invert(1) hue-rotate(180deg);}
 
   @media (max-width:1024px){
-    nav .tagline,nav .links{display:none;}
     .back-link{margin:96px 20px 0;}
     .meta-row{grid-template-columns:1fr;padding:48px 0;gap:16px;}
     .rationale{padding:48px 0;}
@@ -105,23 +110,25 @@
     .shots{gap:6px;}
     .mobile{grid-template-columns:1fr;}
     .imagery{grid-template-columns:repeat(2,minmax(0,1fr));}
-    .credits{grid-template-columns:1fr 1fr;}
     .browser iframe{height:72vh;}
-    .next-project{flex-direction:column;align-items:flex-start;gap:12px;padding:40px 0 56px;}
+    .next-space{height:20vh;}
+    .next-cap{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
+    .next-title{font-size:51px;}
+    .next-all{display:none;}
   }
-  @media (max-width:560px){.credits{grid-template-columns:1fr;}}
+  @media (max-width:809px){
+    nav{grid-template-columns:1fr auto auto;}
+    nav .tagline,nav .links{display:none;}
+    .next-title{font-size:41px;}
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="brand">
-    <a class="logo" href="../../">Olawale Bello&reg;</a>
-    <span class="tagline">Art Direction, Visual Design</span>
-  </div>
-  <span class="links">
-    <a href="../../work/">Work</a>, <a href="../../archive/">Archive</a>, <a href="../../profile/">Profile</a>, <a href="../../journal/">Journal</a>
-  </span>
+  <a class="logo" href="../../">Olawale Bello&reg;</a>
+  <span class="tagline">Art Direction<br>Visual Design</span>
+  <span class="links"><a href="../../work/">Work</a>, <a href="../../archive/">Archive</a>, <a href="../../profile/">Profile</a>, <a href="../../journal/">Journal</a></span>
   <a class="talk" href="../../contact/">Let's Talk</a>
 </nav>
 
@@ -231,22 +238,19 @@
     <p class="note">All imagery was generated for this concept from a 15-shot prompt list, then converted to black and white with one shared contrast curve so it reads as a single shoot.</p>
   </section>
 
-  <section class="block">
-    <h2 class="eyebrow">Credits</h2>
-    <div class="credits">
-      <div><h4>Direction, Design, Motion</h4><p>Olawale Bello</p></div>
-      <div><h4>Sound</h4><p>Original, synthesised for the film</p></div>
-      <div><h4>Imagery</h4><p>AI-generated (ChatGPT)</p></div>
-      <div><h4>Type</h4><p>Archivo, IBM Plex Mono</p></div>
-      <div><h4>Build</h4><p>HTML, CSS, GSAP ScrollTrigger, Lenis</p></div>
-      <div><h4>Film</h4><p>Remotion</p></div>
-    </div>
-  </section>
 
-  <section class="next-project">
-    <a href="../gtbank-fashion-weekend/">Next Up: GTBank Fashion Weekend &rarr;</a>
-    <a class="all" href="../../work/">All Projects &rarr;</a>
-  </section>
+</div>
+
+<div class="next">
+  <div class="next-space"></div>
+  <div class="next-cap">
+    <p class="next-label">Next Up</p>
+    <h2 class="next-title"><a href="../the-burman-hotel/">The Burman Hotel</a></h2>
+    <a class="next-all" href="../../work/">All Projects <span>&rarr;</span></a>
+  </div>
+  <a class="next-media" href="../the-burman-hotel/" aria-label="Next project: The Burman Hotel">
+    <div class="next-img"><img loading="lazy" src="https://framerusercontent.com/images/gEacaEpsSdXnYtX8WtPvFOxfj0.jpg?scale-down-to=2048&amp;width=3279&amp;height=2225" alt="The Burman Hotel"></div>
+  </a>
 </div>
 
 <script>
