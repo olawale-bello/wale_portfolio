@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OSSO Coffee Roasters</title>
+<meta name="description" content="OSSO is a Copenhagen-based specialty coffee roastery with craft and storytelling at its core.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="loader" aria-hidden="true">
+  <span class="loader__logo">O S S O</span>
+  <span class="loader__count">000</span>
+</div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span></span></div>
+<div class="preview" aria-hidden="true"><div class="preview__in"><img src="img/03.jpg" alt=""></div></div>
+
+<!-- NAV -->
+<header class="nav">
+  <a href="#work" class="nav__link">Our Work</a>
+  <a href="#top" class="nav__logo" aria-label="OSSO home">O S S O</a>
+  <nav class="nav__right">
+    <a href="#process" class="nav__link">Process</a>
+    <a href="#origins" class="nav__link">Origins</a>
+    <a href="#contact" class="nav__link">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="hero__media"><img class="hero__img" src="img/01.jpg" alt="Open coffee tasting journal with flavour wheels and roast curves on dark linen"></div>
+    <div class="hero__shade"></div>
+    <h1 class="hero__title">
+      <span class="hero__word" data-split>How</span>
+      <em class="hero__we">we</em>
+      <span class="hero__word" data-split>Roast</span>
+    </h1>
+  </section>
+
+  <!-- 2. COLLAGE INTRO -->
+  <section class="collage" aria-label="Introduction">
+    <span class="collage__line collage__line--v"></span>
+    <span class="collage__line collage__line--h"></span>
+
+    <span class="label" style="left:2%;top:20%">Roasting</span>
+    <span class="label" style="left:2%;top:46%">Sourcing</span>
+    <span class="label" style="left:2%;top:74%">Cupping</span>
+    <span class="label" style="right:2%;top:20%;text-align:right">Brew Bar</span>
+    <span class="label" style="right:2%;top:46%;text-align:right">Wholesale</span>
+    <span class="label" style="right:2%;top:74%;text-align:right">Training</span>
+    <span class="label" style="left:50%;top:6%;transform:translateX(8px)">Green Coffee</span>
+    <span class="label" style="left:50%;top:60%;transform:translateX(8px)">Craft</span>
+
+    <figure class="tile clip" data-cursor="View" data-speed="-0.12" style="left:9%;top:12%;width:11vw;--ar:4/5"><img src="img/02.jpg" alt="Barista making a pour-over"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="0.08"  style="left:21%;top:30%;width:15vw;--ar:1/1"><img src="img/03.jpg" alt="Green coffee beans in a burlap sack"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="-0.06" style="left:39%;top:7%;width:9vw;--ar:1/1"><img src="img/05.jpg" alt="Coffee bag packaging and swatches"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="0.14"  style="left:61%;top:22%;width:14vw;--ar:4/5"><img src="img/04.jpg" alt="Nordic coffee bar interior with red artwork"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="-0.18" style="left:84%;top:8%;width:9vw;--ar:3/4"><img src="img/06.jpg" alt="Coffee cherry branch in a ceramic vase"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="0.1"   style="left:4%;top:50%;width:7vw;--ar:1/1"><img src="img/07.jpg" alt="Red espresso cup on a plinth"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="-0.1"  style="left:46%;top:32%;width:12vw;--ar:1/1"><img src="img/09.jpg" alt="Espresso crema from above"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="0.06"  style="left:76%;top:46%;width:12vw;--ar:4/5"><img src="img/08.jpg" alt="Vintage drum roaster in a sunlit warehouse"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="-0.14" style="left:32%;top:55%;width:10vw;--ar:4/5"><img src="img/11.jpg" alt="Two roasters talking beside the roasting machine"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="0.16"  style="left:90%;top:64%;width:7vw;--ar:1/1"><img src="img/12.jpg" alt="Coffee plant leaves"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="-0.08" style="left:13%;top:72%;width:10vw;--ar:1/1"><img src="img/13.jpg" alt="Cupping table with bowls and spoons"></figure>
+    <figure class="tile clip" data-cursor="View" data-speed="0.12"  style="left:62%;top:70%;width:8vw;--ar:4/5"><img src="img/14.jpg" alt="Stacked stoneware cups"></figure>
+
+    <p class="collage__statement reveal">OSSO is a Copenhagen-based specialty roastery <br>with craft and storytelling at our core.</p>
+    <a href="#origins" class="collage__more">Read more</a>
+  </section>
+
+  <!-- 3. PROCESS STATEMENT -->
+  <section class="process" id="process">
+    <p class="kicker reveal">We trace your coffee to its very origin, find its story,<br>and let the cup translate it to your guests.</p>
+    <h2 class="statement">Whether you are a neighbourhood café or a hotel group, we <em>source</em>, <em>roast</em> and <em>translate</em> what makes your cup unique.</h2>
+    <div class="steps">
+      <div class="step reveal"><span>01</span><h3>Source</h3><p>Direct relationships with growers in Ethiopia, Colombia and Kenya, visited every harvest.</p></div>
+      <div class="step reveal"><span>02</span><h3>Roast</h3><p>Small batches on a restored 1960s drum roaster, profiled to bring out each origin.</p></div>
+      <div class="step reveal"><span>03</span><h3>Serve</h3><p>Training, equipment and recipes so every cup tastes the way it should.</p></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Single origin <i>✺</i> Roasted in Copenhagen <i>✺</i> <em>Traceable</em> to the farm <i>✺</i> Small batch <i>✺</i></span>
+      <span>Single origin <i>✺</i> Roasted in Copenhagen <i>✺</i> <em>Traceable</em> to the farm <i>✺</i> Small batch <i>✺</i></span>
+    </div>
+  </div>
+
+  <!-- 4. JOURNAL / MOOD -->
+  <section class="journal">
+    <div class="journal__grid">
+      <figure class="journal__interior clip" data-cursor="View"><img src="img/15.jpg" alt="Coffee lounge corner at dusk with boucle armchair"></figure>
+      <figure class="journal__bulb clip" data-cursor="View"><img src="img/17.jpg" alt="Edison bulb against a brick wall"></figure>
+      <figure class="journal__object clip" data-cursor="View"><img src="img/16.jpg" alt="Faceted green glass coffee canister"></figure>
+    </div>
+    <h2 class="giant">Journal</h2>
+    <a class="journal__link" href="#">Follow @osso.roasters</a>
+  </section>
+
+  <!-- 5. ORIGINS -->
+  <section class="films" id="origins">
+    <article class="film">
+      <div class="film__head reveal">
+        <h2 class="film__series">Origin<br>No. 01</h2>
+        <h3 class="film__title">Guji,<br>Ethiopia</h3>
+      </div>
+      <dl class="credits">
+        <dt>Producer</dt><dd>Tadesse Edema &amp; family</dd>
+        <dt>Altitude</dt><dd>2,100 m</dd>
+        <dt>Variety</dt><dd>Heirloom</dd>
+        <dt>Process</dt><dd>Natural, raised beds</dd>
+        <dt>In the cup</dt><dd>Blueberry, jasmine, cacao nib</dd>
+        <dt></dt><dd><a class="shop" href="#">Shop this coffee →</a></dd>
+      </dl>
+      <figure class="film__img clip" data-cursor="Watch"><img src="img/18.jpg" alt="Wooden harvest table on a misty coffee farm"></figure>
+    </article>
+
+    <article class="film film--alt">
+      <div class="film__head reveal">
+        <h2 class="film__series">Origin<br>No. 02</h2>
+        <h3 class="film__title">Huila,<br>Colombia</h3>
+      </div>
+      <dl class="credits">
+        <dt>Producer</dt><dd>Don Aurelio, 50 harvests</dd>
+        <dt>Altitude</dt><dd>1,750 m</dd>
+        <dt>Variety</dt><dd>Caturra, Castillo</dd>
+        <dt>Process</dt><dd>Washed</dd>
+        <dt>In the cup</dt><dd>Red apple, panela, orange</dd>
+        <dt></dt><dd><a class="shop" href="#">Shop this coffee →</a></dd>
+      </dl>
+      <figure class="film__img clip" data-cursor="Watch"><img src="img/19.jpg" alt="Farmer's hands holding ripe coffee cherries"></figure>
+    </article>
+
+    <article class="film">
+      <div class="film__head reveal">
+        <h2 class="film__series">The<br>Roastery</h2>
+        <h3 class="film__title">Nordhavn,<br>Copenhagen</h3>
+      </div>
+      <dl class="credits">
+        <dt>Roaster</dt><dd>Restored 1962 Probat</dd>
+        <dt>Batch size</dt><dd>12 kg</dd>
+        <dt>Roast days</dt><dd>Tuesday &amp; Friday</dd>
+        <dt>Head roaster</dt><dd>Jonas Friis</dd>
+        <dt>Visits</dt><dd>Public cupping every Saturday</dd>
+        <dt></dt><dd><a class="shop" href="#contact">Book a visit →</a></dd>
+      </dl>
+      <figure class="film__img clip" data-cursor="Watch"><img src="img/20.jpg" alt="Roastery interior at golden hour"></figure>
+    </article>
+  </section>
+
+  <!-- 6. OUR WORK INDEX -->
+  <section class="work" id="work">
+    <p class="kicker">Our Work</p>
+    <ul class="index">
+      <li><a href="#work" data-img="img/03.jpg"><span>Single Origins</span><i style="--x:62%"></i><b>12</b></a></li>
+      <li><a href="#work" data-img="img/09.jpg"><span>Blends</span><i style="--x:88%"></i><b>04</b></a></li>
+      <li><a href="#work" data-img="img/05.jpg"><span>Wholesale</span><i style="--x:41%"></i><b>28</b></a></li>
+      <li><a href="#work" data-img="img/04.jpg"><span>Brew Bar</span><i style="--x:70%"></i><b>03</b></a></li>
+      <li><a href="#work" data-img="img/13.jpg"><span>Training</span><i style="--x:24%"></i><b>09</b></a></li>
+      <li><a href="#work" data-img="img/22.jpg"><span>Equipment</span><i style="--x:52%"></i><b>06</b></a></li>
+      <li><a href="#work" data-img="img/08.jpg"><span>All Projects</span><i style="--x:8%"></i><b>62</b></a></li>
+    </ul>
+    <div class="work__feature">
+      <figure class="clip" data-cursor="View"><img src="img/21.jpg" alt="Red velvet curtain revealing a minimalist coffee counter"><figcaption>Brew Bar · Nordhavn</figcaption></figure>
+      <figure class="clip" data-cursor="View"><img src="img/22.jpg" alt="Pale ceramic pour-over dripper on a curved shelf"><figcaption>Objects · Dripper 02</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 7. CONTACT -->
+  <section class="contact" id="contact">
+    <img class="contact__bg" src="img/23.jpg" alt="">
+    <div class="contact__inner">
+      <h2 class="contact__title reveal">Let's share<br><em>a cup.</em></h2>
+      <div class="contact__cols">
+        <div><p class="kicker">Roastery</p><p>Sandkaj 12<br>2150 Nordhavn<br>Copenhagen</p></div>
+        <div><p class="kicker">Say hello</p><p><a href="mailto:hello@osso.coffee">hello@osso.coffee</a><br>+45 31 00 00 00</p></div>
+        <div><p class="kicker">Brew bar</p><p>Mon–Fri 7–17<br>Sat–Sun 9–16</p></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <span>© 2026 OSSO Roasters</span>
+      <span class="footer__logo">O S S O</span>
+      <span><a href="#">Instagram</a> · <a href="#">Newsletter</a></span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
