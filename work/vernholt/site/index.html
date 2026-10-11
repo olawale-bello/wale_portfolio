@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vernholt Atelier</title>
+<meta name="description" content="Vernholt Atelier, a concept site for an independent watchmaker. Design and motion by Olawale Bello.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: printed sheets drift at different speeds over a fixed, darkened macro of a wrist.
+   Two pinned full-bleed scenes (frame zoom, image wipe) break the rhythm. Single dark world by design. */
+:root{
+  --void:#0A0A0B;
+  --paper:#E5E4E0;
+  --paper-2:#D6D5D0;
+  --ink:#111112;
+  --ink-2:#3B3B3C;
+  --ash:#B3B1AC;
+  --mist:#73726E;
+  --rule:#C6C4BF;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --text:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--void)}
+body{background:var(--void);color:var(--paper);font-family:var(--text);overflow-x:clip;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+
+/* fixed background */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.5) contrast(1.08);transform:scale(1.08);transform-origin:50% 60%}
+.bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 35%,rgba(0,0,0,.6))}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:calc(18px + env(safe-area-inset-top,0px)) clamp(16px,3vw,40px) 18px;mix-blend-mode:difference;color:#fff}
+.nav .wm{font:500 12px/1 var(--display);letter-spacing:.55em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav a.l{font:400 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.nav a.l:hover{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:720px){.nav ul .opt{display:none}.nav .wm{letter-spacing:.4em}}
+
+/* flow */
+main{position:relative;z-index:1;padding-block:17vh 8vh;display:flex;flex-direction:column;gap:26vh}
+
+/* sheets */
+.sheet{--w:560px;width:min(var(--w),calc(100% - 32px));margin-inline:auto;background:var(--paper);color:var(--ink);
+  padding:clamp(12px,2.4vw,26px);container-type:inline-size;position:relative;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+@media (min-width:900px){
+  .sheet[data-x="l"]{translate:-9vw 0}
+  .sheet[data-x="r"]{translate:9vw 0}
+}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:7cqi}
+.sheet-head .wm{font:500 9px/1 var(--display);letter-spacing:.55em;text-transform:uppercase}
+.sheet-head nav{display:flex;gap:14px}
+.micro{font:400 9px/1.45 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mist);margin:0}
+.micro.dark{color:var(--ink)}
+.body-s{font:400 13px/1.55 var(--text);color:var(--ink-2);max-width:40ch;margin:0}
+.center{text-align:center;margin-inline:auto}
+
+.display{--fs:13cqi;font-family:var(--display);font-weight:400;font-variation-settings:"wdth" 100;text-transform:uppercase;
+  font-size:var(--fs);line-height:.9;letter-spacing:-.045em;margin:0;color:var(--ink)}
+.display .ln{display:block;white-space:nowrap}
+
+.px{position:relative;overflow:hidden;margin:0;background:var(--paper-2)}
+.px img{width:100%;height:100%;object-fit:cover}
+
+/* hero */
+.hero-mid{display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px;margin-block:9cqi 10cqi}
+.insets{display:flex;gap:5px}
+.insets .px{width:21cqi;aspect-ratio:1}
+.hero-foot{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-top:7cqi}
+
+/* framed */
+.framed{padding:clamp(10px,1.6vw,14px)}
+.framed .px{aspect-ratio:4/5}
+.overlay-wm{position:absolute;left:0;right:0;top:56%;text-align:center;font:500 11px/1 var(--display);letter-spacing:.7em;text-transform:uppercase;color:var(--paper);mix-blend-mode:difference;z-index:2;padding-left:.7em}
+.cap{display:grid;grid-template-columns:1fr 1.4fr;gap:16px;padding-top:12px}
+
+/* zoom scene */
+.zoom{position:relative;height:100svh}
+.zoom-stage{position:absolute;inset:0;display:grid;place-items:center}
+.zoom-frame{position:relative;width:100%;height:100%;overflow:hidden;border:0 solid var(--paper);background:var(--paper-2)}
+.zoom-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.zoom-frame .z-b{object-position:50% 18%}
+.cta-card{position:absolute;z-index:3;width:min(210px,58vw);aspect-ratio:1/1.08;background:var(--paper);color:var(--ink);
+  display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:14px 12px}
+.cta-link{font:500 10px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;text-underline-offset:4px}
+.zoom-cap{position:absolute;z-index:3;left:clamp(16px,3vw,40px);bottom:calc(22px + env(safe-area-inset-bottom,0px));color:var(--paper)}
+
+/* collage */
+.collage{display:grid;grid-template-columns:repeat(12,1fr);margin-top:9cqi;padding-bottom:4cqi}
+.c1{grid-column:1/7;grid-row:1;aspect-ratio:1;z-index:2;margin-left:-12cqi}
+.c2{grid-column:6/13;grid-row:1/3;aspect-ratio:4/5;margin-top:22cqi}
+.c3{grid-column:1/6;grid-row:2;align-self:start;margin-top:5cqi;max-width:30ch}
+@media (max-width:700px){.c1{margin-left:0}}
+
+/* dedicated */
+.dedicated .display{margin-block:4cqi 6cqi}
+.dedicated .body-s{margin-bottom:7cqi}
+.dedicated .px{aspect-ratio:3/2;margin-inline:-2cqi}
+
+/* story */
+.story .px{aspect-ratio:4/3}
+.story .display{margin-top:6cqi}
+.glyph{display:inline-block;width:.74em;height:.74em;vertical-align:.02em;margin-inline:.04em}
+.story .ln2{display:flex;align-items:end;gap:5cqi}
+.story .ln2 .micro{font-size:8.5px;max-width:26ch;padding-bottom:.6em;white-space:normal;letter-spacing:.04em}
+.story-foot{display:grid;grid-template-columns:1fr 1.6fr;gap:20px;margin-top:9cqi}
+
+/* hours scene */
+.hours{height:100svh;display:grid;place-items:center}
+.hours-card{position:relative;width:min(780px,calc(100% - 32px));height:min(86svh,980px);overflow:hidden;background:var(--paper-2);container-type:inline-size}
+.hours-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hours-card .h-b{object-position:50% 8%;transform-origin:50% 0}
+.hours-card::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.18),transparent 22%,transparent 58%,rgba(0,0,0,.42))}
+.hours-head,.hours-side,.hours-title{position:absolute;z-index:2;color:var(--paper)}
+.hours-head{top:0;left:0;right:0;display:flex;justify-content:space-between;padding:18px 20px}
+.hours-head .wm{font:500 9px/1 var(--display);letter-spacing:.55em;text-transform:uppercase}
+.hours-head .micro,.hours-side .micro{color:var(--paper)}
+.hours-side{top:34%;left:20px;right:20px;display:flex;justify-content:space-between;gap:24px}
+.hours-side .micro{max-width:24ch}
+.hours-title{left:0;right:0;bottom:3.5%;display:flex;align-items:center;justify-content:center;gap:3cqi;
+  font:400 12cqi/1 var(--display);text-transform:uppercase;letter-spacing:-.045em}
+.h-line{display:block;height:max(2px,.3cqi);background:currentColor;width:20cqi}
+
+/* calibre */
+.cal-top{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:8cqi}
+.specs{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin:0}
+.specs div{display:grid;grid-template-columns:minmax(0,9.5em) 1fr;gap:12px;border-top:1px solid var(--rule);padding-block:11px}
+.specs dt{font:400 9px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mist)}
+.specs dd{margin:0;font:400 14px/1.35 var(--text);font-variant-numeric:tabular-nums;color:var(--ink)}
+@media (max-width:640px){.specs{grid-template-columns:1fr}}
+
+/* commission */
+.commission .px{aspect-ratio:16/9;margin-bottom:7cqi}
+.com-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,5cqi,44px);margin-top:8cqi}
+.salons{display:grid;gap:14px;align-content:start}
+.salons div{border-top:1px solid var(--rule);padding-top:10px;display:grid;gap:4px}
+.salons strong{font:500 14px/1.2 var(--text)}
+form{display:grid;gap:14px;align-content:start}
+.field{display:grid;gap:5px}
+.field label{font:400 9px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mist)}
+.field input,.field select{appearance:none;border:0;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);
+  font:400 15px/1.3 var(--text);padding:6px 0;border-radius:0;width:100%}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(-45deg,transparent 50%,var(--ink) 50%);
+  background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+.field input:focus,.field select:focus{outline:none;border-bottom-width:2px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+button{justify-self:start;margin-top:6px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+  font:500 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:14px 18px;cursor:pointer}
+button:hover{background:transparent;color:var(--ink)}
+.status{min-height:2.9em;color:var(--ink-2)}
+@media (max-width:640px){.com-grid,.story-foot,.cap{grid-template-columns:1fr}}
+
+.foot{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
+  padding:4vh clamp(16px,3vw,40px) calc(28px + env(safe-area-inset-bottom,0px));color:var(--ash)}
+.foot .micro{color:var(--ash)}
+
+@media (prefers-reduced-motion:reduce){.bg img{transform:none}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><img src="img/bg-sleeve.jpg" alt=""></div>
+
+<header class="nav">
+  <a class="wm" href="#top">Vernholt</a>
+  <ul>
+    <li class="opt"><a class="l" href="#atelier">Atelier</a></li>
+    <li class="opt"><a class="l" href="#calibre">Calibre</a></li>
+    <li><a class="l" href="#commission">Reserve</a></li>
+  </ul>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero sheet -->
+  <section class="sheet hero" style="--w:600px" data-speed="0.35">
+    <div class="sheet-head">
+      <span class="wm">Vernholt</span>
+      <nav class="micro dark"><span>Atelier</span><span>Commission</span></nav>
+    </div>
+    <h1 class="display ink-load" style="--fs:17.5cqi"><span class="ln">Vernholt</span><span class="ln">Atelier,</span></h1>
+    <div class="hero-mid">
+      <p class="micro">Independent watchmaking<br>Le Brassus, Vallée de Joux<br>Since 2011</p>
+      <div class="insets">
+        <figure class="px"><img src="img/dial.jpg" alt="Grained steel dial with baton markers"></figure>
+        <figure class="px"><img src="img/strap.jpg" alt="Hand-stitched leather strap"></figure>
+      </div>
+    </div>
+    <h2 class="display ink" style="--fs:16.5cqi"><span class="ln">The</span><span class="ln">Measured</span><span class="ln">Hour.</span></h2>
+    <div class="hero-foot">
+      <p class="body-s">Thirty-six watches a year. Each one is made for a single wrist, from the first drawing to the last screw.</p>
+      <p class="micro">Scroll</p>
+    </div>
+  </section>
+
+  <!-- 2. Framed portrait -->
+  <section class="sheet framed" style="--w:500px" data-speed="-0.3" data-x="r">
+    <figure class="px parallax"><img src="img/wrist.jpg" alt="A steel wristwatch on a man's wrist, resting on grey flannel"><span class="overlay-wm" aria-hidden="true">Vernholt</span></figure>
+    <div class="cap">
+      <p class="micro dark">Commission No. 0217</p>
+      <p class="micro">Steel, 38 mm, hand-wound. Fitted over three visits to the atelier.</p>
+    </div>
+  </section>
+
+  <!-- 3. Frame zoom + sticky CTA -->
+  <section class="zoom" id="atelier" aria-label="Commission a watch">
+    <div class="zoom-stage">
+      <div class="zoom-frame">
+        <img class="z-a" src="img/steel.jpg" alt="Brushed steel case flank with a polished bevel">
+        <img class="z-b" src="img/car.jpg" alt="A man in a knit sweater at the wheel of a vintage open-top car, wearing a steel watch">
+      </div>
+      <div class="cta-card">
+        <p class="micro">To begin a commission</p>
+        <a class="cta-link" href="#commission">Reserve a<br>consultation</a>
+        <p class="micro">Geneva · London · Tokyo</p>
+      </div>
+      <p class="micro zoom-cap">Case flank, brushed then bevelled by hand</p>
+    </div>
+  </section>
+
+  <!-- 4. Movements + collage -->
+  <section class="sheet movements" style="--w:620px" data-speed="0.2" data-x="l">
+    <div class="sheet-head">
+      <span class="wm">Vernholt</span>
+      <nav class="micro dark"><span>Atelier</span><span>Commission</span></nav>
+    </div>
+    <p class="micro center" style="margin-bottom:3cqi">The practice of</p>
+    <h2 class="display ink center" style="--fs:11.2cqi;text-align:center"><span class="ln">Hand-finished</span><span class="ln">movements</span></h2>
+    <p class="body-s center" style="text-align:center;margin-top:5cqi">Every bridge is bevelled, grained and polished by one watchmaker. Their initials sit under the balance wheel, where only a watchmaker will look.</p>
+    <div class="collage">
+      <figure class="px c1 parallax" data-lag="0.7"><img src="img/hand.jpg" alt="An open palm holding a small mechanical movement"></figure>
+      <figure class="px c2 parallax" data-lag="-0.35"><img src="img/bench.jpg" alt="Loupe, tweezers, screwdrivers and an open case on a bench"></figure>
+      <p class="micro c3" data-lag="0.25">Calibre VH-01 at actual size. 132 parts, 21 jewels, one pair of hands.</p>
+    </div>
+  </section>
+
+  <!-- 5. Dedicated -->
+  <section class="sheet dedicated" style="--w:600px" data-speed="-0.2" data-x="r">
+    <div class="sheet-head">
+      <span class="wm">Vernholt</span>
+      <nav class="micro dark"><span>Atelier</span><span>Commission</span></nav>
+    </div>
+    <p class="micro">From first visit to delivery: fourteen months</p>
+    <h2 class="display ink" style="--fs:10.6cqi"><span class="ln">Dedicated</span><span class="ln">to your</span><span class="ln">measured life.</span></h2>
+    <p class="body-s">We measure your wrist, the way you wear a cuff, the hand you write with. The case, lugs and strap are drawn around those numbers.</p>
+    <figure class="px parallax"><img src="img/assembly.jpg" alt="A watchmaker assembling a movement with tweezers under a loupe"></figure>
+  </section>
+
+  <!-- 6. Story -->
+  <section class="sheet story" style="--w:560px" data-speed="0.3" data-x="l">
+    <figure class="px parallax"><img src="img/engraving.jpg" alt="Engraving a scroll pattern into a steel caseback with a burin"></figure>
+    <h2 class="display ink" style="--fs:13cqi">
+      <span class="ln">Your <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="currentColor"/><circle cx="20" cy="20" r="13" fill="none" stroke="#E5E4E0" stroke-width="1.8"/><line class="g-hr" x1="20" y1="20" x2="27" y2="23" stroke="#E5E4E0" stroke-width="1.8"/><line class="g-min" x1="20" y1="20" x2="20" y2="9.5" stroke="#E5E4E0" stroke-width="1.8"/></svg> own</span>
+      <span class="ln ln2"><span>Hour.</span><span class="micro">Engraved on the caseback, by hand, in a pattern drawn only once</span></span>
+    </h2>
+    <div class="story-foot">
+      <p class="micro">Caseback No. 0217<br>Burin on steel, 31 hours</p>
+      <p class="body-s">A date, a coordinate, a line in a language only two people read. The engraver draws it with you, then cuts it by hand. The drawing is destroyed after, so it cannot be made twice.</p>
+    </div>
+  </section>
+
+  <!-- 7. Our hours: wipe -->
+  <section class="hours" aria-label="Our hours">
+    <div class="hours-card">
+      <img class="h-a" src="img/neck.jpg" alt="The back of a man's neck above a dark knit collar">
+      <img class="h-b" src="img/standing.jpg" alt="A man in a dark sweater standing between two black chairs, hands behind his head">
+      <div class="hours-head"><span class="wm">Vernholt</span><span class="micro">Atelier hours</span></div>
+      <div class="hours-side">
+        <p class="micro">Mon to Fri, 08:00 to 17:00<br>Visits by appointment</p>
+        <p class="micro" style="text-align:right">One clock keeps time here: the regulator on the east wall</p>
+      </div>
+      <div class="hours-title" aria-label="Our hours"><span class="h-w1">Our</span><i class="h-line"></i><span class="h-w2">Hours</span></div>
+    </div>
+  </section>
+
+  <!-- 8. Calibre spec sheet -->
+  <section class="sheet calibre" id="calibre" style="--w:680px" data-speed="0.15">
+    <div class="sheet-head">
+      <span class="wm">Vernholt</span>
+      <nav class="micro dark"><span>Technical sheet</span></nav>
+    </div>
+    <div class="cal-top">
+      <h2 class="display ink" style="--fs:10.4cqi"><span class="ln">Calibre</span><span class="ln">VH-01</span></h2>
+      <p class="micro" style="text-align:right">Developed and made<br>in the atelier</p>
+    </div>
+    <dl class="specs">
+      <div><dt>Movement</dt><dd>Hand-wound, in-house</dd></div>
+      <div><dt>Frequency</dt><dd>28,800 vph · 4 Hz</dd></div>
+      <div><dt>Power reserve</dt><dd>72 hours</dd></div>
+      <div><dt>Rate</dt><dd>−2 / +4 s per day</dd></div>
+      <div><dt>Jewels</dt><dd>21</dd></div>
+      <div><dt>Parts</dt><dd>132</dd></div>
+      <div><dt>Case</dt><dd>Steel, 38 × 9.4 mm</dd></div>
+      <div><dt>Water resistance</dt><dd>5 ATM</dd></div>
+      <div><dt>Finishing</dt><dd>Anglage, perlage, Geneva stripes, black polish</dd></div>
+      <div><dt>Lead time</dt><dd>14 months</dd></div>
+    </dl>
+  </section>
+
+  <!-- 9. Commission -->
+  <section class="sheet commission" id="commission" style="--w:720px" data-speed="-0.1">
+    <div class="sheet-head">
+      <span class="wm">Vernholt</span>
+      <nav class="micro dark"><span>Commission</span></nav>
+    </div>
+    <figure class="px parallax"><img src="img/workshop.jpg" alt="The atelier: a long wooden bench by a window over the lake"></figure>
+    <h2 class="display ink" style="--fs:10.6cqi"><span class="ln">Reserve a</span><span class="ln">consultation.</span></h2>
+    <div class="com-grid">
+      <div class="salons">
+        <p class="body-s">The first meeting takes ninety minutes. We measure, we talk, we draw. There is no fee and no obligation.</p>
+        <div><span class="micro">Atelier</span><strong>Le Brassus</strong><span class="micro">All year, by appointment</span></div>
+        <div><span class="micro">Salons</span><strong>Geneva · London · Tokyo</strong><span class="micro">Spring and autumn, five days each</span></div>
+      </div>
+      <form id="consult" novalidate>
+        <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="row2">
+          <div class="field"><label for="c-city">Where to meet</label>
+            <select id="c-city" name="city"><option>Le Brassus</option><option>Geneva</option><option>London</option><option>Tokyo</option></select></div>
+          <div class="field"><label for="c-wrist">Wrist (cm)</label><input id="c-wrist" name="wrist" inputmode="decimal" placeholder="17.5"></div>
+        </div>
+        <button type="submit">Request a consultation</button>
+        <p class="micro status" id="c-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="micro">© 2026 Vernholt Atelier. A concept site by Myndzone Media.</p>
+  <p class="micro">Photography generated for this concept</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  // form: no backend, so say so plainly
+  var form=document.getElementById('consult'), status=document.getElementById('c-status');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=form.querySelector('#c-name').value.trim(), m=form.querySelector('#c-email').value.trim();
+    if(!n||!/^\S+@\S+\.\S+$/.test(m)){status.textContent='Add your name and a valid email to continue.';return;}
+    status.textContent='Thank you, '+n.split(' ')[0]+'. This is a concept site, so nothing was sent.';
+  });
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!window.gsap||!window.ScrollTrigger||reduce) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  var css=getComputedStyle(document.documentElement);
+  var ASH=css.getPropertyValue('--ash').trim(), INK=css.getPropertyValue('--ink').trim();
+
+  // smooth scroll
+  var lenis=null;
+  if(window.Lenis){
+    lenis=new Lenis({lerp:0.085,wheelMultiplier:0.9});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000)});
+    gsap.ticker.lagSmoothing(0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href'), el=id==='#top'?document.body:document.querySelector(id);
+      if(!el)return; e.preventDefault();
+      if(lenis) lenis.scrollTo(el,{duration:1.6}); else el.scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // intro: wordmark spreads, hero rises, headline inks in
+  gsap.fromTo('.nav .wm',{letterSpacing:'0.12em'},{letterSpacing:window.innerWidth<720?'0.4em':'0.55em',duration:1.8,ease:'expo.out'});
+  gsap.from('.hero',{y:140,duration:1.5,ease:'expo.out'});
+  gsap.fromTo('.ink-load .ln',{color:ASH,letterSpacing:'-0.01em'},{color:INK,letterSpacing:'-0.045em',duration:1.4,stagger:.18,ease:'power3.out',delay:.25});
+
+  // 1. parallax sheets
+  gsap.utils.toArray('[data-speed]').forEach(function(el){
+    var s=parseFloat(el.dataset.speed)||0;
+    gsap.fromTo(el,{y:function(){return innerHeight*0.14*s}},{y:function(){return -innerHeight*0.14*s},ease:'none',
+      scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:true,invalidateOnRefresh:true}});
+  });
+  // image drift inside frames
+  gsap.utils.toArray('.parallax img').forEach(function(img){
+    gsap.fromTo(img,{yPercent:-6,scale:1.16},{yPercent:6,scale:1.16,ease:'none',
+      scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  // background breathes over the whole page
+  gsap.fromTo('.bg img',{scale:1.14},{scale:1.02,ease:'none',scrollTrigger:{trigger:'main',start:'top top',end:'bottom bottom',scrub:true}});
+
+  // 2. text ink-in
+  gsap.utils.toArray('.ink').forEach(function(h){
+    gsap.fromTo(h.querySelectorAll('.ln'),{color:ASH,letterSpacing:'-0.01em'},{color:INK,letterSpacing:'-0.045em',stagger:.3,ease:'none',
+      scrollTrigger:{trigger:h,start:'top 88%',end:'bottom 52%',scrub:true}});
+  });
+  // the glyph keeps time while you read
+  gsap.to('.g-min',{rotation:360,svgOrigin:'20 20',ease:'none',scrollTrigger:{trigger:'.story',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.g-hr',{rotation:30,svgOrigin:'20 20',ease:'none',scrollTrigger:{trigger:'.story',start:'top bottom',end:'bottom top',scrub:true}});
+
+  // 3 + 4 + 5. frame zoom, sticky CTA, image wipe
+  var ztl=gsap.timeline({scrollTrigger:{trigger:'.zoom',start:'top top',end:'+=240%',pin:true,pinSpacing:true,scrub:0.6,anticipatePin:1,invalidateOnRefresh:true}});
+  ztl.fromTo('.zoom-frame',
+      {width:function(){return Math.min(500,innerWidth*0.72)},height:function(){return innerHeight*0.62},borderWidth:12},
+      {width:function(){return innerWidth},height:function(){return innerHeight},borderWidth:0,ease:'power2.inOut',duration:1})
+     .fromTo('.z-a',{scale:1.5},{scale:1,ease:'power2.inOut',duration:1},0)
+     .fromTo('.zoom-cap',{autoAlpha:0},{autoAlpha:1,duration:.2},.85)
+     .fromTo('.z-b',{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'power3.inOut',duration:.9},1.3)
+     .fromTo('.z-b',{scale:1.25},{scale:1,ease:'power3.out',duration:1},1.3)
+     .to('.zoom-cap',{autoAlpha:0,duration:.15},1.3)
+     .to({}, {duration:.4});
+
+  // 6. collage pieces arrive on their own timing
+  gsap.utils.toArray('.collage [data-lag]').forEach(function(el){
+    var l=parseFloat(el.dataset.lag);
+    gsap.fromTo(el,{y:l*160},{y:-l*50,ease:'none',scrollTrigger:{trigger:'.collage',start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  // 7. our hours: wipe + title spreads
+  var htl=gsap.timeline({scrollTrigger:{trigger:'.hours',start:'top top',end:'+=190%',pin:true,pinSpacing:true,scrub:0.6,anticipatePin:1}});
+  htl.fromTo('.h-a',{scale:1},{scale:1.12,ease:'none',duration:1.4},0)
+     .fromTo('.h-line',{width:'4cqi'},{width:'18cqi',ease:'power2.inOut',duration:1},0)
+     .fromTo('.h-b',{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'power2.inOut',duration:1},.45)
+     .fromTo('.h-b',{scale:1.18},{scale:1,ease:'power2.out',duration:1.1},.45)
+     .to({}, {duration:.3});
+
+  window.addEventListener('load',function(){ScrollTrigger.refresh()});
+})();
+</script>
+</body>
+</html>
