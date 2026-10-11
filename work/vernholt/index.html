@@ -273,10 +273,8 @@
 (function(){
   var box=document.querySelector('.next-media'), img=document.querySelector('.next-img');
   if(!box||!img) return;
-  var ticking=false;
-  function place(){ ticking=false; var top=box.getBoundingClientRect().top; img.style.transform='translate3d(0,'+(-top)+'px,0)'; img.style.height=window.innerHeight+'px'; }
-  function req(){ if(!ticking){ ticking=true; requestAnimationFrame(place); } }
-  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',req); place();
+  function place(){ var top=box.getBoundingClientRect().top; img.style.transform='translate3d(0,'+(-top)+'px,0)'; img.style.height=window.innerHeight+'px'; }
+  window.addEventListener('scroll',place,{passive:true}); window.addEventListener('resize',place); window.addEventListener('load',place); place();
 })();
 </script>
 <script src="../../theme-toggle.js"></script>
