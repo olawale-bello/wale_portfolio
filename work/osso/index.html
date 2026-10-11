@@ -79,6 +79,8 @@
   .phone{width:min(340px,100%);margin-inline:auto;border:10px solid #1a1a1a;border-radius:44px;overflow:hidden;background:#111;aspect-ratio:390/844;}
   .phone video{width:100%;height:100%;object-fit:cover;}
   .mobile p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.85);max-width:460px;}
+  .phones{margin-bottom:24px;}
+  .mobile-copy p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.85);max-width:640px;}
 
   /* imagery */
   .imagery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
@@ -165,13 +167,13 @@
     <p>The structure comes from an editorial studio site, translated for coffee. The opening is a tasting journal under the words How we Roast, with the letters rising in one by one after a short count-up. Below it, twelve photographs drift around a single sentence about the roastery, each at its own depth, so the page moves with both the scroll and the pointer.</p>
     <p>A studio site would show films here. A roastery shows where its coffee comes from, so those pages became Origins. Each one sets the region in display type beside the details a buyer actually checks: producer, altitude, variety, process and tasting notes, with a link to buy that coffee.</p>
     <p>The interactions stay small and serve the reading. Words in the process statement light up as you scroll past them. A marquee speeds up and leans with your scroll. JOURNAL slides sideways, and photographs open from the bottom as they arrive. The cursor becomes a View label over images, links lean towards it, and the Our Work index shows a photograph that follows the cursor down the rows.</p>
-    <p>All imagery was art directed and generated for the project from one prompt system, so the light, grain and palette hold across twenty-two photographs. Alongside the site I cut a 26-second showcase film with an original soundtrack: a slow chord pad at 90 BPM, soft bell plucks, and a whoosh landing on every cut.</p>
+    <p>All imagery was art directed and generated for the project from one prompt system, so the light, grain and palette hold across twenty-two photographs. The showcase film is a real recording of the site in use, 48 seconds from the count-up to the contact page, with the cursor, hovers and scroll effects running as they do in the browser. It has an original soundtrack: a slow chord pad at 90 BPM, soft bell plucks, and a whoosh landing on every scroll.</p>
   </section>
 
   <section class="block">
     <div class="block-head">
       <h2 class="eyebrow">Showcase Film</h2>
-      <span class="block-note">26 seconds, sound on</span>
+      <span class="block-note">48 seconds, sound on</span>
     </div>
     <div class="clip film">
       <video controls playsinline preload="metadata" poster="media/osso-film_poster.jpg">
@@ -211,9 +213,11 @@
 
   <section class="block">
     <h2 class="eyebrow">On Mobile</h2>
-    <div class="mobile">
-      <div class="phone"><video class="loop" muted loop playsinline preload="none" poster="media/m-full_poster.jpg"><source src="media/m-full.mp4" type="video/mp4"></video></div>
-      <p>At phone width the headline stacks into three lines and the floating collage settles into a three-column grid. The statement comes first, origins drop to one column, and the custom cursor and hover effects switch off because there is no pointer. This is one continuous scroll from the hero to the contact page.</p>
+    <div class="clip film phones">
+      <video class="loop" muted loop playsinline preload="none" poster="media/phones-loop_poster.jpg"><source src="media/phones-loop.mp4" type="video/mp4"></video>
+    </div>
+    <div class="mobile-copy">
+      <p>At phone width the headline stacks into three lines and the floating collage settles into a three-column grid. The statement comes first, origins drop to one column, and the custom cursor and hover effects switch off because there is no pointer. Each phone above scrolls a different part of the same mobile page.</p>
     </div>
   </section>
 
