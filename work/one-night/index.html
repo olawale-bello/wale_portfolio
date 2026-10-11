@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>try{if(localStorage.getItem("wale-theme")==="light")document.documentElement.classList.add("light-mode")}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Night - Olawale Bello</title>
+<meta name="description" content="Art direction, web design, motion and sound for One Night, a concept photo archive read sideways from dusk to dawn. Full site, showcase film and a section-by-section breakdown.">
+<link href="https://framerusercontent.com/images/KG1d2FgPHUTzOr0dD5pQbFs77Cc.jpg" rel="icon">
+<meta property="og:type" content="website">
+<meta property="og:title" content="One Night - Olawale Bello">
+<meta property="og:description" content="Art direction, web design, motion and sound for One Night, a concept photo archive read sideways from dusk to dawn.">
+<meta property="og:image" content="media/s01-hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mona+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#000;color:#fff;font-family:"Inter","Mona Sans",sans-serif;}
+  body{overflow-x:clip;}
+  a{color:inherit;text-decoration:none;}
+  img,video,iframe{max-width:100%;display:block;}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px;}
+
+  /* nav: same as the Framer pages (fixed, transparent, Mona Sans 17/500, columns at 24% and 48%) */
+  nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1920px;z-index:100;padding:10px 20px;
+    display:grid;grid-template-columns:24% 24% 1fr auto auto;align-items:start;
+    font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;line-height:1.3;color:#fff;
+    font-feature-settings:"ss01","tnum";}
+  nav a{color:#fff;}
+  nav .talk{margin-right:20px;}
+  nav .links a:hover,nav .talk:hover,nav .logo:hover{color:rgba(255,255,255,0.6);}
+  nav .tagline{display:block;}
+  nav .theme-toggle-btn{margin-top:0;}
+
+  .hero{position:relative;height:100vh;min-height:480px;width:100%;overflow:hidden;display:flex;align-items:flex-end;background:#000;}
+  .hero video,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.75) 100%);}
+  .hero-inner{position:relative;z-index:2;width:100%;padding:0 20px 40px;}
+  .back-link{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;margin:130px 20px 0;font-size:17px;font-weight:500;color:#fff;}
+  .hero-inner h1{font-family:"Mona Sans",sans-serif;font-weight:500;font-size:clamp(36px,6vw,72px);line-height:1.02;max-width:900px;}
+
+  .meta-row{display:grid;grid-template-columns:repeat(3,minmax(160px,1fr));gap:24px;padding:80px 0;border-bottom:1px solid rgba(255,255,255,0.15);}
+  .meta-row div h3{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:10px;}
+  .meta-row div p{font-size:17px;font-weight:500;}
+
+  .eyebrow{font-family:"Mona Sans",sans-serif;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin-bottom:24px;}
+  .rationale{padding:80px 0;max-width:820px;}
+  .rationale p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.85);margin-bottom:20px;}
+  .rationale p:last-child{margin-bottom:0;}
+
+  .block{padding:0 0 96px;}
+  .block-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:24px;}
+  .block-head .eyebrow{margin-bottom:0;}
+  .block-head a{font-size:15px;font-weight:500;color:rgba(255,255,255,0.6);}
+  .block-head a:hover{color:#fff;}
+  .block-note{font-size:15px;color:rgba(255,255,255,0.6);}
+  .note{font-size:15px;line-height:1.6;color:rgba(255,255,255,0.6);margin-top:14px;max-width:640px;}
+
+  .clip{position:relative;overflow:hidden;background:#111;}
+  .clip video{width:100%;height:100%;object-fit:cover;display:block;}
+  .film{aspect-ratio:16/9;max-height:88vh;margin-inline:auto;}
+
+  /* live site in a browser frame */
+  .browser{border:1px solid rgba(255,255,255,0.15);background:#0d0d0d;}
+  .browser-bar{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.12);}
+  .dots{display:flex;gap:6px;}
+  .dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.22);display:block;}
+  .url{flex:1;min-width:0;font-size:13px;color:rgba(255,255,255,0.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .browser-bar a{font-size:13px;font-weight:500;white-space:nowrap;}
+  .browser iframe{width:100%;height:min(82vh,860px);border:0;background:#0a0a0b;}
+
+  /* section breakdown: full-bleed 1920x1080 stills */
+  .shots{display:flex;flex-direction:column;gap:12px;width:min(100vw,1920px);margin-left:calc(50% - min(50vw,960px));}
+  .shots img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#111;}
+
+  /* mobile */
+  .mobile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;}
+  .phone{width:min(340px,100%);margin-inline:auto;border:10px solid #1a1a1a;border-radius:44px;overflow:hidden;background:#111;aspect-ratio:390/844;}
+  .phone video{width:100%;height:100%;object-fit:cover;}
+  .mobile p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.85);max-width:460px;}
+
+  /* imagery */
+  .imagery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+  .imagery figure{position:relative;overflow:hidden;background:#111;aspect-ratio:4/5;}
+  .imagery figure.wide{grid-column:span 2;aspect-ratio:auto;}
+  .imagery img{width:100%;height:100%;object-fit:cover;}
+
+  /* next project: same structure as the Framer pages */
+  .next{position:relative;height:100vh;display:flex;flex-direction:column;overflow:hidden;margin-top:177px;}
+  .next-space{flex:none;height:40vh;}
+  .next-cap{flex:none;display:grid;grid-template-columns:repeat(4,minmax(50px,1fr));gap:20px;align-items:end;width:100%;max-width:1920px;margin:0 auto;padding:0 20px 20px;}
+  .next-label,.next-all{font-family:"Mona Sans",sans-serif;font-size:17px;font-weight:500;line-height:1.3;}
+  .next-title{grid-column:span 2;font-family:"Inter",sans-serif;font-weight:400;font-size:81px;line-height:1;letter-spacing:-0.04em;white-space:nowrap;font-feature-settings:"tnum","ss01";}
+  .next-title a:hover{color:rgba(255,255,255,0.6);}
+  .next-all{justify-self:end;display:inline-flex;gap:6px;}
+  .next-all span{color:rgba(255,255,255,0.6);}
+  .next-media{position:relative;flex:1 0 0;min-height:0;display:block;overflow:hidden;background:#111;}
+  .next-img{position:absolute;top:0;left:0;width:100%;height:100vh;will-change:transform;}
+  .next-img img{width:100%;height:100%;object-fit:cover;}
+
+  /* theme-toggle inverts the page; keep the embedded site true */
+  html.light-mode iframe{filter:invert(1) hue-rotate(180deg);}
+
+  @media (max-width:1024px){
+    .back-link{margin:96px 20px 0;}
+    .meta-row{grid-template-columns:1fr;padding:48px 0;gap:16px;}
+    .rationale{padding:48px 0;}
+    .block{padding:0 0 64px;}
+    .shots{gap:6px;}
+    .mobile{grid-template-columns:1fr;}
+    .imagery{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .browser iframe{height:72vh;}
+    .next-space{height:20vh;}
+    .next-cap{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
+    .next-title{font-size:51px;}
+    .next-all{display:none;}
+  }
+  @media (max-width:809px){
+    nav{grid-template-columns:1fr auto auto;}
+    nav .tagline,nav .links{display:none;}
+    .next-title{font-size:41px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="../../">Olawale Bello&reg;</a>
+  <span class="tagline">Art Direction<br>Visual Design</span>
+  <span class="links"><a href="../../work/">Work</a>, <a href="../../archive/">Archive</a>, <a href="../../profile/">Profile</a>, <a href="../../journal/">Journal</a></span>
+  <a class="talk" href="../../contact/">Let's Talk</a>
+</nav>
+
+<a class="back-link" href="../../work/">&larr; Back</a>
+
+<section class="hero" id="hero-video-section">
+  <img src="media/s01-hero.jpg" alt="One Night website: the opening screen, a photographer at the centre with her photographs orbiting around her">
+  <div class="hero-inner">
+    <div class="container">
+      <h1>One Night</h1>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="meta-row">
+    <div>
+      <h3>Client</h3>
+      <p>One Night (concept)</p>
+    </div>
+    <div>
+      <h3>Year</h3>
+      <p>2026</p>
+    </div>
+    <div>
+      <h3>Services</h3>
+      <p>Art Direction, Web Design, Motion Design, Sound Design</p>
+    </div>
+  </section>
+
+  <section class="rationale">
+    <h2 class="eyebrow">Rationale</h2>
+    <p>One Night is a concept for a night photographer's archive. Most portfolios are a grid. This one is a single night, read from left to right, from 17:48 to 05:52, with twenty-one photographs placed at the hour each one was taken.</p>
+    <p>The first screen is an orbit. A portrait of the photographer sits in the middle while her photographs drift around her in 3D and answer the pointer. Scrolling pulls you out of the orbit and into the night.</p>
+    <p>After that the page pins and the scroll turns sideways. A clock in the header runs with you, and a thin line under it tracks the whole night. The sky is one colour computed from that clock: dusk violet, near black through midnight, a warm tint before dawn. Every surface reads the same value, so the page changes with the hour.</p>
+    <p>An index lists every frame in time order and opens the same lightbox as the timeline. The page ends on first light, 05:52. On a phone the pin is dropped and the night becomes a vertical list.</p>
+    <p>Alongside the site I cut a 31-second showcase film with an original soundtrack: a low drone and rain underneath, a bell as the clock lands on 17:48, a tick for every ten minutes of the night, and a whoosh each time a new frame comes forward.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="eyebrow">Showcase Film</h2>
+      <span class="block-note">31 seconds, sound on</span>
+    </div>
+    <div class="clip film">
+      <video controls playsinline preload="metadata" poster="media/one-night-film_poster.jpg">
+        <source src="media/one-night-film.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <div class="block">
+    <h2 class="eyebrow">Section by Section</h2>
+    <div class="shots">
+      <img loading="lazy" width="1920" height="1080" src="media/s01-hero.jpg" alt="The opening screen: The City after Dark, a photographer with her photographs orbiting">
+      <img loading="lazy" width="1920" height="1080" src="media/s02-dusk.jpg" alt="17:57, dusk: the timeline begins with the first frames of the evening">
+      <img loading="lazy" width="1920" height="1080" src="media/s03-evening.jpg" alt="19:23, evening: the lights come on and the city changes shape">
+      <img loading="lazy" width="1920" height="1080" src="media/s04-midnight.jpg" alt="23:59, around midnight: the sky colour has gone near black">
+      <img loading="lazy" width="1920" height="1080" src="media/s05-small-hours.jpg" alt="00:54, the small hours: a train passing at speed">
+      <img loading="lazy" width="1920" height="1080" src="media/s06-before-dawn.jpg" alt="02:03, before dawn: the quietest stretch of the night">
+      <img loading="lazy" width="1920" height="1080" src="media/s07-first-light.jpg" alt="04:27, first light: the harbour turns gold">
+      <img loading="lazy" width="1920" height="1080" src="media/s08-index.jpg" alt="Index: every frame listed in time order">
+      <img loading="lazy" width="1920" height="1080" src="media/s09-about.jpg" alt="About, and the page ending on first light, 05:52">
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="eyebrow">Full Website</h2>
+      <a href="site/" target="_blank" rel="noopener">Open full site &nearr;</a>
+    </div>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="url">One Night, concept site</span>
+        <a href="site/" target="_blank" rel="noopener">Open &nearr;</a>
+      </div>
+      <iframe src="site/" title="One Night website, live" loading="lazy"></iframe>
+    </div>
+    <p class="note">This is the live build. Scroll inside the frame, or open it full screen to see the pinned sideways timeline at full size.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">On Mobile</h2>
+    <div class="mobile">
+      <div class="phone"><video class="loop" muted loop playsinline preload="none" poster="media/m-full_poster.jpg"><source src="media/m-full.mp4" type="video/mp4"></video></div>
+      <p>At phone width the pinned timeline gives way to a vertical list, one frame after another in time order. The type scales down, the photographs run close to the edges, and the lightbox still opens on a tap. This is one continuous scroll from the orbit to first light.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">Imagery</h2>
+    <div class="imagery">
+      <figure class="wide"><img loading="lazy" src="site/images/01-red-bridge-long-exposure-min.webp" alt="Red bridge in a long exposure"></figure>
+      <figure><img loading="lazy" src="site/images/07-last-train-fast-min.webp" alt="Last train passing fast"></figure>
+      <figure><img loading="lazy" src="site/images/11-one-window-lit-min.webp" alt="One window lit in a dark block"></figure>
+      <figure><img loading="lazy" src="site/images/03-filament-min.webp" alt="Filament lights in the dark"></figure>
+      <figure><img loading="lazy" src="site/images/13-eyes-on-the-wall-min.webp" alt="Photographer shooting against a graffiti wall"></figure>
+      <figure><img loading="lazy" src="site/images/12-rails-after-rain-min.webp" alt="Rails after rain"></figure>
+      <figure><img loading="lazy" src="site/images/15-neon-held-still-min.webp" alt="Neon held still"></figure>
+      <figure><img loading="lazy" src="site/images/09-small-fire-min.webp" alt="A small fire at night"></figure>
+      <figure class="wide"><img loading="lazy" src="site/images/19-red-passage-min.webp" alt="Red passage with a lone figure"></figure>
+      <figure><img loading="lazy" src="site/images/14-six-lanes-one-car-min.webp" alt="Six lanes, one car"></figure>
+      <figure><img loading="lazy" src="site/images/18-slow-anchor-min.webp" alt="Slow anchor at the harbour"></figure>
+      <figure><img loading="lazy" src="site/images/05-stairs-to-nowhere-min.webp" alt="Stairs to nowhere"></figure>
+      <figure class="wide"><img loading="lazy" src="site/images/20-cables-at-night-min.webp" alt="Cables at night"></figure>
+    </div>
+    <p class="note">Twenty-one photographs, each placed on the timeline at the hour it was taken. A selection is shown here.</p>
+  </section>
+
+
+</div>
+
+<div class="next">
+  <div class="next-space"></div>
+  <div class="next-cap">
+    <p class="next-label">Next Up</p>
+    <h2 class="next-title"><a href="../vernholt/">Vernholt Atelier</a></h2>
+    <a class="next-all" href="../../work/">All Projects <span>&rarr;</span></a>
+  </div>
+  <a class="next-media" href="../vernholt/" aria-label="Next project: Vernholt Atelier">
+    <div class="next-img"><img loading="eager" decoding="async" src="../vernholt/media/s02-commission-card.jpg" alt="Vernholt Atelier"></div>
+  </a>
+</div>
+
+<script>
+// Play section clips only while they are on screen
+(function(){
+  var vids=document.querySelectorAll('video.loop');
+  if(!('IntersectionObserver' in window)){vids.forEach(function(v){v.preload='metadata';v.autoplay=true;});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ if(v.preload==='none'){v.preload='auto';} var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      else { v.pause(); }
+    });
+  },{threshold:0.35});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+<script>
+// Next Up reveal: the image stays put while its frame scrolls up over it
+(function(){
+  var box=document.querySelector('.next-media'), img=document.querySelector('.next-img');
+  if(!box||!img) return;
+  function place(){ var top=box.getBoundingClientRect().top; img.style.transform='translate3d(0,'+(-top)+'px,0)'; img.style.height=window.innerHeight+'px'; }
+  window.addEventListener('scroll',place,{passive:true}); window.addEventListener('resize',place); window.addEventListener('load',place); place();
+})();
+</script>
+<script src="../../theme-toggle.js"></script>
+<script src="../../interactions.js"></script>
+</body>
+</html>
