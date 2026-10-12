@@ -17,7 +17,7 @@
     'vernholt': ['web-design', 'motion'],
     'the-burman-hotel': ['branding', 'print'],
     'chesterfield': ['print', 'digital'],
-    'gtbank-fashion-weekend': ['social', 'motion'],
+    'gtbank-fashion-weekend': ['motion'],
     'divest': ['social', 'digital'],
     'nano-banana': ['personal'],
     'reloc8-copy': ['branding'],
