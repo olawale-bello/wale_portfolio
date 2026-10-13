@@ -70,7 +70,7 @@
   .browser-bar a{font-size:13px;font-weight:500;white-space:nowrap;}
   .browser iframe{width:100%;height:min(82vh,860px);border:0;background:#0a0a0b;}
 
-  /* section breakdown: a pages carousel, then one full-bleed 1920x1080 still per section */
+  /* section breakdown: one full-bleed 1920x1080 still per section; All Pages reuses .shots for the carousel */
   .shots{display:flex;flex-direction:column;gap:12px;width:min(100vw,1920px);margin-left:calc(50% - min(50vw,960px));}
   .shots img,.shots video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#111;}
 
@@ -185,7 +185,6 @@
   <div class="block">
     <h2 class="eyebrow">Section by Section</h2>
     <div class="shots">
-      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/pages-carousel_poster.jpg" aria-label="Every section of the site laid out as pages: the view zooms into the centre column, moves through each page in turn, then zooms back out"><source src="media/pages-carousel.mp4" type="video/mp4"></video>
       <img loading="lazy" width="1920" height="1080" src="media/s01-opening.jpg" alt="The opening screen: the ALDRE wordmark across the top of three tins on limestone plinths, with Slow Tea for Quiet Rituals below">
       <img loading="lazy" width="1920" height="1080" src="media/s02-menu.jpg" alt="The menu: Shop, Ritual and Contact in large type over a photograph of all six tins">
       <img loading="lazy" width="1920" height="1080" src="media/s03-blends.jpg" alt="The Blends: the italic statement above all six blends, each with a framed photograph and a tasting card for leaf, origin and steep">
@@ -210,6 +209,13 @@
       <iframe src="site/" title="ALDRE Slow Tea House website, live" loading="lazy"></iframe>
     </div>
     <p class="note">This is the live build. Scroll inside the frame, or open it full screen to see the opening, the menu and the hover previews at full size.</p>
+  </section>
+
+  <section class="block">
+    <h2 class="eyebrow">All Pages</h2>
+    <div class="shots">
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/pages-carousel_poster.jpg" aria-label="Every section of the site laid out as pages: the view zooms into the centre column, moves through each page in turn, then zooms back out"><source src="media/pages-carousel.mp4" type="video/mp4"></video>
+    </div>
   </section>
 
   <section class="block">
