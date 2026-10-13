@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALDRE — Slow Tea House</title>
+<meta name="description" content="ALDRE blends small-harvest loose leaf teas for quiet rituals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#ECE9E1; --paper:#F8F4EA; --ink:#2A2724; --ink-soft:#5d5852;
+  --sage:#C7C7AB; --oxblood:#5B231D; --forest:#1F3A30; --mist:#AEB6B8; --clay:#B8653E;
+  --wide:"Archivo",system-ui,sans-serif; --serif:"Instrument Serif",Georgia,serif;
+  --ease:cubic-bezier(.77,0,.18,1); --out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--wide);font-stretch:100%;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wide{font-stretch:125%;font-weight:500;letter-spacing:-.02em;text-transform:uppercase;line-height:.82}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+
+/* ---------- media slot: image/video with a tinted placeholder underneath ---------- */
+.media{position:relative;overflow:hidden;background:var(--tone,#cfc9bd)}
+.media::before{content:attr(data-file);position:absolute;left:12px;bottom:10px;font:500 10px/1.2 var(--wide);letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7);z-index:0}
+.media::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 20%,rgba(255,255,255,.22),transparent 60%),radial-gradient(80% 80% at 80% 100%,rgba(0,0,0,.22),transparent 60%);z-index:0}
+.media img,.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+
+/* ---------- top bar ---------- */
+.bar{position:fixed;inset:0 0 auto 0;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;z-index:50;color:var(--ink);pointer-events:none}
+.bar>*{pointer-events:auto;transition:color .35s}
+.bar .on-dark{color:var(--paper)}
+.bar .logo{font-stretch:125%;font-weight:600;font-size:14px;letter-spacing:.04em}
+.bar button{background:none;border:0;color:inherit;font:inherit;font-size:13px;cursor:pointer;letter-spacing:.02em}
+
+/* ---------- 1. intro ---------- */
+.intro{position:relative;height:100svh;min-height:560px;background:var(--ink);overflow:hidden;color:var(--paper)}
+.intro .bg{position:absolute;inset:0;--tone:#2f3a33;clip-path:inset(50% 0 50% 0);transform:scale(1.06);transition:clip-path 1.6s var(--ease) 1.3s,transform 2.6s var(--out) 1.3s}
+.intro.go .bg{clip-path:inset(0 0 0 0);transform:scale(1)}
+.intro .word{position:absolute;left:2vw;right:2vw;top:2.2vw;display:flex;justify-content:space-between;font-size:21vw;z-index:2;pointer-events:none}
+.intro .word span{display:block;transform:translate(var(--x),var(--y)) scale(.55);clip-path:inset(var(--c));transition:transform 1.5s var(--ease),clip-path 1.5s var(--ease)}
+.intro.go .word span{transform:none;clip-path:inset(0)}
+.intro .tag{position:absolute;left:0;right:0;bottom:6vh;text-align:center;z-index:2;opacity:0;transform:translateY(20px);transition:1s var(--ease) 2.6s}
+.intro.go .tag{opacity:1;transform:none}
+.intro .tag b{display:block;font-stretch:125%;font-weight:500;font-size:clamp(18px,2.4vw,34px);letter-spacing:-.01em}
+.intro .tag i{font-family:var(--serif);font-size:clamp(18px,2.2vw,30px)}
+
+/* ---------- 2. blends: card-over-image and split layouts ---------- */
+.slide{position:relative;padding:18vh 6vw;background:var(--cream)}
+.slide>.media{position:relative;width:64%;aspect-ratio:3/2;max-width:100%}
+.slide.alt>.media{margin-left:auto}
+.slide .card{inset:0 auto 0 54vw;margin:auto 0;width:min(380px,34vw);height:min(500px,72svh);box-shadow:0 30px 60px -40px rgba(42,39,36,.45)}
+.slide.alt .card{inset:0 54vw 0 auto}
+.slide .cap{margin-top:14px;display:flex;gap:18px;color:var(--ink-soft)}
+.slide.alt .cap{justify-content:flex-end}
+.card{position:absolute;inset:0;margin:auto;width:min(420px,78vw);height:min(560px,78svh);background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:42px 28px 22px;z-index:2}
+.card h2{font-size:clamp(48px,6vw,76px);line-height:.92}
+.card .num{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink-soft)}
+.card .thumb{width:62px;height:44px}
+.split{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;height:100svh;min-height:620px}
+.split .cell{position:relative;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px;text-align:center}
+.split .cell.media{background:var(--tone)}
+.split h2{font-size:clamp(52px,7vw,104px);line-height:.9}
+.split .num{font-family:var(--serif);font-style:italic;font-size:28px}
+.split .thumb{width:84px;height:60px}
+.note{max-width:30ch;font-size:13px;line-height:1.5;color:var(--ink-soft)}
+
+/* reveals: each section plays once when it enters (.in), time-based with a long expo ease.
+   Hidden states only apply when JS is running (html.js) and motion is allowed. */
+@media (prefers-reduced-motion:no-preference){
+  html.js .slide>.media,html.js .wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.5s var(--out)}
+  html.js .in>.media,html.js .in .wipe{clip-path:inset(0)}
+  html.js .slide>.media img,html.js .wipe img,html.js .wipe video{transform:scale(1.16);transition:transform 2.2s var(--out)}
+  html.js .in>.media img,html.js .in .wipe img,html.js .in .wipe video{transform:none}
+  html.js .rv:not(.cell),html.js .cell.rv>*{opacity:0;transform:translate3d(0,28px,0);transition:opacity 1.2s var(--out),transform 1.4s var(--out);transition-delay:calc(var(--base,0ms) + var(--d,0) * 110ms)}
+  html.js .in .rv:not(.cell),html.js .in .cell.rv>*{opacity:1;transform:none}
+  .slide .card{--base:350ms}
+  .split .cell.rv>*:nth-child(2){--d:1}.split .cell.rv>*:nth-child(3){--d:2}
+  .split .cell.rv:nth-child(3)>*,.split .cell.rv:nth-child(4)>*{--base:200ms}
+  .steps.rv{--base:250ms}
+}
+
+/* ---------- 2. blends: a quiet catalogue, six framed plates with tasting notes ---------- */
+.blends{padding:18vh 6vw 16vh;background:var(--cream)}
+.bintro{max-width:1180px;margin:0 auto 12vh;display:grid;grid-template-columns:1fr 2fr 1fr;align-items:end;gap:24px}
+.bintro p{font-size:clamp(28px,3vw,44px);line-height:1.08;text-wrap:balance}
+.bintro .shop-link{justify-self:end;font-size:clamp(20px,1.8vw,26px)}
+.bgrid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(24px,5vw,72px);row-gap:clamp(64px,13vh,128px)}
+.blend .media{aspect-ratio:4/3;max-width:100%}
+.blend .media img{transition:transform 1.2s var(--out),opacity .6s ease}
+.blend .media img.alt{opacity:0}
+.blend:hover .media img{transform:scale(1.05)}
+.blend:hover .media img.alt{opacity:1}
+.bhead{display:flex;justify-content:space-between;margin-top:18px;color:var(--ink-soft)}
+.blend h3{font-size:clamp(32px,2.8vw,42px);line-height:1;margin:10px 0 18px}
+.blend dl{border-top:1px solid rgba(42,39,36,.18)}
+.blend dl div{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid rgba(42,39,36,.1);font-size:13px}
+.blend dt{font-stretch:125%;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);padding-top:2px}
+.blend dd{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:no-preference){
+  html.js .blend,html.js .bintro>*{opacity:0;transform:translateY(20px);transition:opacity 1s var(--out),transform 1.2s var(--out);transition-delay:calc(var(--i,0) * 90ms)}
+  html.js .blend.in,html.js .in .bintro>*{opacity:1;transform:none}
+  .bintro>:nth-child(2){--i:1}.bintro>:nth-child(3){--i:2}
+}
+@media (max-width:1000px){.bgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .blends{padding:12vh 16px}
+  .bintro{grid-template-columns:1fr;margin-bottom:8vh}
+  .bintro .shop-link{justify-self:start}
+  .bgrid{grid-template-columns:1fr;row-gap:64px}
+}
+/* ---------- 3. the shelf: a paper panel holding a quiet 5×3 grid of small images ---------- */
+.shelf{padding:12vh 6vw;background:var(--cream)}
+.spanel{max-width:1180px;margin:0 auto;background:var(--paper);padding:clamp(28px,4vw,48px) clamp(20px,4vw,56px) clamp(28px,4vw,44px);display:flex;flex-direction:column;align-items:center;gap:clamp(36px,7vh,72px)}
+.sgrid{width:100%;display:grid;grid-template-columns:repeat(5,1fr);row-gap:clamp(48px,11vh,110px);align-items:center;justify-items:center}
+.tile{position:relative;width:clamp(56px,7.4vw,112px);aspect-ratio:4/3}
+.tile .media{position:absolute;inset:0}
+.tile .media img{transition:transform .8s var(--out)}
+.tile::after{content:attr(data-name);position:absolute;left:50%;top:calc(100% + 10px);transform:translate(-50%,4px);white-space:nowrap;font:500 10px var(--wide);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);opacity:0;transition:opacity .3s,transform .5s var(--out)}
+.tile:hover .media img{transform:scale(1.12)}
+.tile:hover::after{opacity:1;transform:translate(-50%,0)}
+.sline{text-align:center;font-stretch:125%;font-weight:500;font-size:11px;letter-spacing:.04em;line-height:1.45;text-transform:uppercase;max-width:24ch}
+.shop-link{font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.4vw,32px);border-bottom:1px solid currentColor;line-height:1.1}
+.shop-link:hover{color:var(--clay)}
+@media (prefers-reduced-motion:no-preference){
+  html.js .shelf .tile,html.js .shelf .sline{opacity:0;transform:translateY(16px);transition:opacity 1s var(--out),transform 1.2s var(--out);transition-delay:calc(var(--i,0) * 70ms)}
+  html.js .shelf.in .tile,html.js .shelf.in .sline{opacity:1;transform:none}
+}
+#shelfDetail{transition:opacity .4s}
+
+/* ---------- 4. index ---------- */
+.index{background:var(--sage);padding:14vh 5vw 18vh;position:relative}
+.index h3{text-align:center;font-size:clamp(44px,5vw,72px);margin-bottom:12vh}
+.index h3 sup{font-size:.35em;vertical-align:top;margin-left:4px}
+.index ol{list-style:none}
+.index li{display:flex;align-items:baseline;border-top:1px solid rgba(42,39,36,.0)}
+.index li .n{width:4vw;min-width:34px;font-family:var(--serif);font-style:italic;font-size:22px}
+.index li a{font-family:var(--serif);font-style:italic;font-size:clamp(34px,4.4vw,64px);line-height:1.08;padding-left:calc(var(--i) * 3.2vw);transition:color .3s,padding .5s var(--ease)}
+.index li a:hover{color:var(--paper);padding-left:calc(var(--i) * 3.2vw + 24px)}
+.index li small{margin-left:16px;font:500 10px var(--wide);letter-spacing:.08em;text-transform:uppercase;opacity:.55}
+.peek{position:fixed;width:200px;height:140px;pointer-events:none;z-index:40;opacity:0;transform:translate(-50%,-110%) scale(.9);transition:opacity .25s,transform .35s var(--ease)}
+.peek.on{opacity:1;transform:translate(-50%,-110%) scale(1)}
+
+/* ---------- 5. ritual (text) ---------- */
+.ritual{padding:20vh 6vw;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;background:var(--paper)}
+.ritual p.big{font-family:var(--serif);font-size:clamp(30px,3.6vw,54px);line-height:1.08}
+.ritual .media{aspect-ratio:4/5}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.steps div{border-top:1px solid var(--ink);padding-top:12px;font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.steps b{display:block;color:var(--ink);font-stretch:125%;font-weight:600;font-size:12px;letter-spacing:.06em;margin-bottom:6px}
+
+/* ---------- 6. contact ---------- */
+.contact{position:relative;height:110svh;min-height:680px;overflow:hidden}
+.contact .top{position:absolute;inset:0 0 40% 0}
+.contact .band{position:absolute;inset:60% 0 0 0;background:var(--mist);display:flex;align-items:center}
+.contact .band .wide{font-size:22vw;color:var(--paper);width:100%;text-align:center}
+.contact .card{justify-content:center;gap:40px}
+.contact .card p.label{max-width:28ch;line-height:1.35;font-size:12px}
+.contact .card .serif{font-size:clamp(38px,4vw,54px);line-height:1}
+.contact .card a.label{opacity:.55;border-bottom:1px solid currentColor}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:22px 24px;background:var(--ink);color:var(--paper);font-size:12px}
+
+/* ---------- menu overlay ---------- */
+.menu{position:fixed;inset:0;background:var(--cream);z-index:60;display:flex;flex-direction:column;justify-content:center;align-items:center;clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--ease)}
+.menu.open{clip-path:inset(0)}
+.menu .x{position:absolute;top:18px;right:24px;background:none;border:0;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.menu a{position:relative;z-index:2;font-size:clamp(56px,11vw,180px);display:flex;align-items:flex-start;gap:.6vw;mix-blend-mode:multiply}
+.menu a sup{font-family:var(--serif);font-style:italic;font-size:22px;text-transform:none;letter-spacing:0;margin-top:.4em}
+.menu a:nth-child(3){margin-left:-12vw}.menu a:nth-child(4){margin-left:8vw}
+.menu .pic{position:absolute;left:50%;top:50%;width:min(300px,40vw);aspect-ratio:3/4;transform:translate(-50%,-50%);z-index:1}
+.menu .pic .media{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.menu .pic .media.on{opacity:1}
+
+@media (max-width:760px){
+  .slide{padding:12vh 16px}
+  .slide>.media{width:100%}
+  .slide .card,.slide.alt .card{position:relative;inset:auto;margin:-48px auto 0;width:min(340px,86%);height:auto;min-height:380px;gap:24px}
+  .slide.alt .cap{justify-content:flex-start}
+  .split{grid-template-columns:1fr;grid-template-rows:none;height:auto}
+  .split .cell{min-height:52svh}
+  .shelf{padding:10vh 16px}
+  .sgrid{grid-template-columns:repeat(3,1fr);row-gap:44px}
+  .tile{width:clamp(64px,22vw,96px)}
+  .sline{grid-column:1/-1;order:-1;margin-bottom:8px}
+  .ritual{grid-template-columns:1fr;padding:12vh 16px}
+  .steps{grid-template-columns:1fr}
+  .index{padding:12vh 16px}
+  .index li a{padding-left:calc(var(--i) * 2vw)}
+  .bar{padding:16px}
+  .peek{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01s!important;animation:none!important}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="bar">
+  <a href="#top" class="logo">ALDRE</a>
+  <button id="openMenu">Menu</button>
+</header>
+
+<!-- MENU -->
+<nav class="menu" id="menu" aria-label="Main">
+  <button class="x" id="closeMenu">Close</button>
+  <div class="pic">
+    <div class="media on" data-k="shop" data-file="menu-shop.jpg" style="--tone:#6a3a2c"><img src="assets/menu-shop.jpg" alt=""></div>
+    <div class="media" data-k="ritual" data-file="menu-ritual.jpg" style="--tone:#7c8a80"><img src="assets/menu-ritual.jpg" alt=""></div>
+    <div class="media" data-k="contact" data-file="menu-contact.jpg" style="--tone:#9aa3a5"><img src="assets/menu-contact.jpg" alt=""></div>
+  </div>
+  <a href="#blends" class="wide" data-k="shop"><sup>01</sup>Shop</a>
+  <a href="#ritual" class="wide" data-k="ritual"><sup>02</sup>Ritual</a>
+  <a href="#contact" class="wide" data-k="contact"><sup>03</sup>Contact</a>
+</nav>
+
+<!-- 1. INTRO -->
+<section class="intro" id="top">
+  <div class="bg media" data-file="hero-intro.mp4 / hero-intro.jpg">
+    <img src="assets/hero-intro.jpg" alt="" id="heroImg" fetchpriority="high">
+    <video data-src="assets/hero-intro.mp4" muted loop playsinline hidden></video>
+  </div>
+  <h1 class="word wide" aria-label="ALDRE">
+    <span style="--x:-2vw;--y:-4vw;--c:0 0 45% 0">A</span>
+    <span style="--x:6vw;--y:-6vw;--c:0 0 60% 0">L</span>
+    <span style="--x:-4vw;--y:62svh;--c:0 40% 0 0">D</span>
+    <span style="--x:10vw;--y:58svh;--c:50% 0 0 0">R</span>
+    <span style="--x:2vw;--y:-5vw;--c:0 0 55% 40%">E</span>
+  </h1>
+  <div class="tag">
+    <b>SLOW TEA</b>
+    <i>for Quiet Rituals</i>
+  </div>
+</section>
+
+<main id="blends">
+  <section class="blends" aria-label="The Blends">
+    <header class="bintro">
+      <span class="label">The Blends</span>
+      <p class="serif">Six small harvests, blended slowly and packed by hand in runs of three hundred tins.</p>
+      <a class="shop-link" href="#shelf">See the shelf</a>
+    </header>
+    <div class="bgrid">
+      <article class="blend" style="--i:0">
+        <div class="media" style="--tone:#7a3b2a">
+          <img loading="lazy" src="assets/blend-01-ember.jpg" alt="Ember Oolong tin">
+        </div>
+        <div class="bhead"><span class="label">01</span><span class="label tag">New</span></div>
+        <h3 class="serif">Ember Oolong</h3>
+        <dl>
+          <div><dt>Leaf</dt><dd>Roasted oolong</dd></div>
+          <div><dt>Origin</dt><dd>Wuyi Mountains, Fujian</dd></div>
+          <div><dt>Steep</dt><dd>95°C · 3 min</dd></div>
+        </dl>
+      </article>
+      <article class="blend" style="--i:1">
+        <div class="media" style="--tone:#b9c1c1">
+          <img loading="lazy" src="assets/blend-02-still-a.jpg" alt="Still Water tin">
+          <img class="alt" loading="lazy" src="assets/blend-02-still-b.jpg" alt="">
+        </div>
+        <div class="bhead"><span class="label">02</span><span class="label tag"></span></div>
+        <h3 class="serif">Still Water</h3>
+        <dl>
+          <div><dt>Leaf</dt><dd>White tea</dd></div>
+          <div><dt>Origin</dt><dd>Fuding, Fujian</dd></div>
+          <div><dt>Steep</dt><dd>80°C · 4 min</dd></div>
+        </dl>
+      </article>
+      <article class="blend" style="--i:2">
+        <div class="media" style="--tone:#24402f">
+          <img loading="lazy" src="assets/blend-03-pine.jpg" alt="Hollow Pine tin">
+        </div>
+        <div class="bhead"><span class="label">03</span><span class="label tag"></span></div>
+        <h3 class="serif">Hollow Pine</h3>
+        <dl>
+          <div><dt>Leaf</dt><dd>Green tea, pine needle</dd></div>
+          <div><dt>Origin</dt><dd>Nantou, Taiwan</dd></div>
+          <div><dt>Steep</dt><dd>80°C · 2 min</dd></div>
+        </dl>
+      </article>
+      <article class="blend" style="--i:0">
+        <div class="media" style="--tone:#4e4655">
+          <img loading="lazy" src="assets/blend-04-night-a.jpg" alt="Night Garden tin">
+          <img class="alt" loading="lazy" src="assets/blend-04-night-b.jpg" alt="">
+        </div>
+        <div class="bhead"><span class="label">04</span><span class="label tag">Caffeine free</span></div>
+        <h3 class="serif">Night Garden</h3>
+        <dl>
+          <div><dt>Leaf</dt><dd>Chamomile, lavender</dd></div>
+          <div><dt>Origin</dt><dd>Provence, France</dd></div>
+          <div><dt>Steep</dt><dd>100°C · 5 min</dd></div>
+        </dl>
+      </article>
+      <article class="blend" style="--i:1">
+        <div class="media" style="--tone:#9ea08a">
+          <img loading="lazy" src="assets/blend-05-meadow.jpg" alt="Salt Meadow tin">
+        </div>
+        <div class="bhead"><span class="label">05</span><span class="label tag"></span></div>
+        <h3 class="serif">Salt Meadow</h3>
+        <dl>
+          <div><dt>Leaf</dt><dd>Sencha, sea buckthorn</dd></div>
+          <div><dt>Origin</dt><dd>Kagoshima, Japan</dd></div>
+          <div><dt>Steep</dt><dd>75°C · 1 min</dd></div>
+        </dl>
+      </article>
+      <article class="blend" style="--i:2">
+        <div class="media" style="--tone:#b8653e">
+          <img loading="lazy" src="assets/blend-06-sun-a.jpg" alt="Low Sun tin">
+          <img class="alt" loading="lazy" src="assets/blend-06-sun-b.jpg" alt="">
+        </div>
+        <div class="bhead"><span class="label">06</span><span class="label tag">Caffeine free</span></div>
+        <h3 class="serif">Low Sun</h3>
+        <dl>
+          <div><dt>Leaf</dt><dd>Rooibos, orange peel</dd></div>
+          <div><dt>Origin</dt><dd>Cederberg, South Africa</dd></div>
+          <div><dt>Steep</dt><dd>100°C · 6 min</dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- 3. THE SHELF -->
+<section class="shelf" id="shelf" aria-label="The Shelf">
+  <div class="spanel">
+    <span class="label">The Shelf</span>
+    <div class="sgrid" id="sgrid"></div>
+    <a class="shop-link" href="#blends">Visit the shop</a>
+  </div>
+</section>
+
+<!-- 4. INDEX -->
+<section class="index">
+  <h3 class="serif">Index<sup>14</sup></h3>
+  <ol id="indexList"></ol>
+  <div class="peek media" id="peek"><img alt=""></div>
+</section>
+
+<!-- 5. RITUAL -->
+<section class="ritual" id="ritual">
+  <div>
+    <p class="label" style="margin-bottom:24px">02 — The ritual</p>
+    <p class="big rv">We blend in small harvests, pack by hand, and print every tin in a run of three hundred. Then we wait for the next season.</p>
+    <div class="steps rv">
+      <div><b>MEASURE</b>One heaped spoon, 3g, for every cup.</div>
+      <div><b>STEEP</b>80–95°C water, two to four minutes. Then taste.</div>
+      <div><b>REPEAT</b>Good leaves open three times. Keep pouring.</div>
+    </div>
+  </div>
+  <div class="media wipe" data-file="ritual-pour.mp4 / ritual-pour.jpg" style="--tone:#8f857a">
+    <img loading="lazy" src="assets/ritual-pour.jpg" alt="Tea poured from a stone pot">
+    <video data-src="assets/ritual-pour.mp4" muted loop playsinline hidden></video>
+  </div>
+</section>
+
+<!-- 6. CONTACT -->
+<section class="contact" id="contact">
+  <div class="top media" data-file="contact.jpg" style="--tone:#d6d0c6"><img loading="lazy" src="assets/contact.jpg" alt=""></div>
+  <div class="band"><span class="wide">ALDRE</span></div>
+  <div class="card rv">
+    <p class="label">For wholesale, cafés or a blend made just for you,</p>
+    <p class="serif">please,<br>write to us</p>
+    <a class="label" href="mailto:hello@aldre.tea">hello@aldre.tea</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 ALDRE Slow Tea House</span>
+  <span>Instagram · Journal · Stockists</span>
+</footer>
+
+<script>
+// Hide <img>/<video> that fail to load so the tinted placeholder shows through
+document.querySelectorAll('.media img').forEach(el=>{
+  const hide=()=>{el.style.display='none'};
+  if(el.complete && !el.naturalWidth && el.getAttribute('src')) hide();
+  el.addEventListener('error',hide);
+});
+// Videos play over their still only once the file actually exists
+document.querySelectorAll('video[data-src]').forEach(v=>{
+  fetch(v.dataset.src,{method:'HEAD'}).then(r=>{
+    if(!r.ok) return;
+    v.src=v.dataset.src; v.autoplay=true;
+    v.addEventListener('playing',()=>{v.hidden=false},{once:true});
+    v.play().catch(()=>{});
+  }).catch(()=>{});
+});
+
+// Intro (always start at the top so the intro plays)
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+// Start as soon as the hero still is ready (never wait for the rest of the page)
+const intro=document.querySelector('.intro'), heroImg=document.getElementById('heroImg');
+let started=false;
+const go=()=>{if(started)return;started=true;requestAnimationFrame(()=>intro.classList.add('go'))};
+(heroImg.decode?heroImg.decode():Promise.reject()).then(go,()=>heroImg.complete?go():heroImg.addEventListener('load',go,{once:true}));
+setTimeout(go,1800);
+
+// Reveal on scroll
+// Reveals: play each section once as it comes into view
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+}),{rootMargin:'0px 0px -12% 0px'});
+document.querySelectorAll('main section,.blend,.shelf,.ritual,.contact').forEach(el=>io.observe(el));
+let ticking=false;
+const barBits=[...document.querySelectorAll('.bar>*')];
+function barTone(){
+  barBits.forEach(el=>{
+    const r=el.getBoundingClientRect(), x=r.left+r.width/2, y=r.top+r.height/2;
+    const under=document.elementsFromPoint(x,y).find(n=>!n.closest('.bar'));
+    const dark=!!under&&!under.closest('.card')&&!!under.closest('.media,.intro,footer');
+    el.classList.toggle('on-dark',dark);
+  });
+}
+function frameTick(){
+  ticking=false;
+  const vh=innerHeight;
+  barTone();
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(frameTick)}},{passive:true});
+addEventListener('resize',frameTick);
+
+// Menu
+const menu=document.getElementById('menu');
+document.getElementById('openMenu').onclick=()=>menu.classList.add('open');
+document.getElementById('closeMenu').onclick=()=>menu.classList.remove('open');
+menu.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('mouseenter',()=>menu.querySelectorAll('.pic .media').forEach(m=>m.classList.toggle('on',m.dataset.k===a.dataset.k)));
+  a.addEventListener('click',()=>menu.classList.remove('open'));
+});
+
+// The Shelf: 14 small tiles around one line of text (centre of a 5×3 grid)
+const shelf=[
+  ['The Ritual Box','shelf-gift-box.jpg','#c4b49b'],['Kiln Cup','shelf-cup-stone.jpg','#9b9488'],
+  ['Ember Oolong','thumb-01.jpg','#7a3b2a'],['Stone Pot','shelf-steam.jpg','#3a3632'],
+  ['Still Water','thumb-02.jpg','#aeb6b8'],['Brass Spoon','shelf-tin-lid.jpg','#7a3b2a'],
+  ['Loose Leaf','shelf-leaves-macro.jpg','#4f5b3a'],
+  ['Hollow Pine','thumb-03.jpg','#1F3A30'],['Harvest Journal','shelf-stationery.jpg','#e3dccd'],
+  ['The Full Set','shelf-tins-row.jpg','#5B231D'],['Salt Meadow','thumb-05.jpg','#9ea08a'],
+  ['Daily Measure','shelf-hands.jpg','#b29276'],['Carrier Bag','shelf-shopping-bag.jpg','#1F3A30'],
+  ['Low Sun','thumb-06.jpg','#b8653e']
+];
+const tile=([n,f,t],i)=>`<div class="tile" data-name="${n}" style="--i:${i}"><div class="media" style="--tone:${t}"><img loading="lazy" src="assets/${f}" alt="${n}" onerror="this.style.display='none'"></div></div>`;
+document.getElementById('sgrid').innerHTML=
+  shelf.slice(0,7).map(tile).join('')+
+  '<p class="sline" style="--i:7">Teaware, paper and gifts for the daily pour.</p>'+
+  shelf.slice(7).map((x,k)=>tile(x,k+8)).join('');
+frameTick();
+
+// Index
+const idx=[
+  ['Ember Oolong','Blend','#7a3b2a','thumb-01.jpg'],['Still Water','Blend','#aeb6b8','thumb-02.jpg'],
+  ['Hollow Pine','Blend','#1F3A30','thumb-03.jpg'],['Night Garden','Blend','#6f6377','thumb-04.jpg'],
+  ['Salt Meadow','Blend','#9ea08a','thumb-05.jpg'],['Low Sun','Blend','#b8653e','thumb-06.jpg'],
+  ['Kiln Cup','Teaware','#9b9488','shelf-cup-stone.jpg'],['Stone Pot','Teaware','#6b655d','shelf-steam.jpg'],
+  ['The Ritual Box','Gift','#c4b49b','shelf-gift-box.jpg'],['Harvest Journal','Paper','#e3dccd','shelf-stationery.jpg'],
+  ['Brass Spoon','Teaware','#a88a4e','shelf-tin-lid.jpg'],['Tin Refill','Blend','#5B231D','shelf-tins-row.jpg'],
+  ['Linen Tote','Goods','#1F3A30','shelf-shopping-bag.jpg'],['Winter Reserve','Soon','#3a3632','shelf-leaves-macro.jpg']
+];
+const list=document.getElementById('indexList'), peek=document.getElementById('peek'), pimg=peek.querySelector('img');
+pimg.onerror=()=>pimg.style.display='none';
+idx.forEach(([n,k,t,f],i)=>{
+  const li=document.createElement('li');
+  li.innerHTML=`<span class="n">${i+1}</span><a href="#blends" style="--i:${i}">${n}<small>${k}</small></a>`;
+  const a=li.querySelector('a');
+  a.addEventListener('mouseenter',()=>{peek.style.setProperty('--tone',t);pimg.style.display='';pimg.src='assets/'+f;peek.dataset.file=f;peek.classList.add('on')});
+  a.addEventListener('mouseleave',()=>peek.classList.remove('on'));
+  list.appendChild(li);
+});
+window.addEventListener('mousemove',e=>{peek.style.left=e.clientX+'px';peek.style.top=e.clientY+'px'});
+</script>
+</body>
+</html>

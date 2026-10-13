@@ -12,6 +12,7 @@
     { id: 'personal', label: 'Personal' }
   ];
   var PROJECTS = {
+    'aldre': ['web-design', 'motion'],
     'osso': ['web-design', 'motion'],
     'one-night': ['web-design', 'motion'],
     'vernholt': ['web-design', 'motion'],
