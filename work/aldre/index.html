@@ -70,9 +70,9 @@
   .browser-bar a{font-size:13px;font-weight:500;white-space:nowrap;}
   .browser iframe{width:100%;height:min(82vh,860px);border:0;background:#0a0a0b;}
 
-  /* section breakdown: full-bleed 1920x1080 stills */
+  /* section breakdown: full-bleed 1920x1080 clips, each playing while on screen */
   .shots{display:flex;flex-direction:column;gap:12px;width:min(100vw,1920px);margin-left:calc(50% - min(50vw,960px));}
-  .shots img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#111;}
+  .shots img,.shots video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#111;}
 
   /* mobile */
   .mobile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;}
@@ -185,14 +185,13 @@
   <div class="block">
     <h2 class="eyebrow">Section by Section</h2>
     <div class="shots">
-      <img loading="lazy" width="1920" height="1080" src="media/s01-hero.jpg" alt="The opening screen: the ALDRE wordmark across the top of three tins on limestone plinths, with Slow Tea for Quiet Rituals below">
-      <img loading="lazy" width="1920" height="1080" src="media/s02-menu.jpg" alt="The menu: Shop, Ritual and Contact in large type over a photograph of all six tins">
-      <img loading="lazy" width="1920" height="1080" src="media/s03-blends.jpg" alt="The Blends: an italic statement above the first row of the catalogue, Ember Oolong, Still Water and Hollow Pine">
-      <img loading="lazy" width="1920" height="1080" src="media/s04-blends-notes.jpg" alt="The second row of blends with tasting cards for leaf, origin and steep, Night Garden showing its second photograph on hover">
-      <img loading="lazy" width="1920" height="1080" src="media/s05-shelf.jpg" alt="The Shelf: a paper panel with fourteen small photographs around one line of text and a Visit the shop link">
-      <img loading="lazy" width="1920" height="1080" src="media/s06-index.jpg" alt="The Index: every product in staggered italic serif on sage">
-      <img loading="lazy" width="1920" height="1080" src="media/s07-ritual.jpg" alt="The Ritual: how the tea is blended and brewed, beside a photograph of tea poured from a stone pot">
-      <img loading="lazy" width="1920" height="1080" src="media/s08-contact.jpg" alt="Contact: a cream card reading please, write to us over a tea counter and the ALDRE wordmark">
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s01-opening_poster.jpg" aria-label="The opening: the ALDRE letters fly in from the corners and the photograph of the tins opens from a single line"><source src="media/s01-opening.mp4" type="video/mp4"></video>
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s02-menu_poster.jpg" aria-label="The menu: Shop, Ritual and Contact in large type, the photograph behind them changing with each word"><source src="media/s02-menu.mp4" type="video/mp4"></video>
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s03-blends_poster.jpg" aria-label="The Blends: the statement and the catalogue grid rising into place, with a blend swapping to its second photograph on hover"><source src="media/s03-blends.mp4" type="video/mp4"></video>
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s04-shelf_poster.jpg" aria-label="The Shelf: fourteen small photographs fading in one after another, each showing its name on hover"><source src="media/s04-shelf.mp4" type="video/mp4"></video>
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s05-index_poster.jpg" aria-label="The Index: every product in staggered italics, with a preview that follows the cursor down the rows"><source src="media/s05-index.mp4" type="video/mp4"></video>
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s06-ritual_poster.jpg" aria-label="The Ritual: how the tea is blended and brewed, beside a photograph of tea poured from a stone pot"><source src="media/s06-ritual.mp4" type="video/mp4"></video>
+      <video class="loop" muted loop playsinline preload="none" width="1920" height="1080" poster="media/s07-contact_poster.jpg" aria-label="Contact: the card rising over the tea counter and the ALDRE wordmark"><source src="media/s07-contact.mp4" type="video/mp4"></video>
     </div>
   </div>
 
